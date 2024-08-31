@@ -23,8 +23,6 @@ class _GroceryAppState extends State<GroceryApp> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isDark = false;
-
     return BlocProvider(
       create: (context) => DarkThemeCubit(getIt.get<MyCacheHelper>()),
       child: BlocBuilder<DarkThemeCubit, DarkThemeState>(
