@@ -13,7 +13,7 @@ class ProfileViewBody extends StatelessWidget {
       children: [
         CustomUserInfo(),
         Divider(
-          thickness: 1.2,
+          thickness: 2,
         ),
         AccountSettings(),
       ],

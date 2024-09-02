@@ -18,25 +18,41 @@ class _SwitchThemeAppState extends State<SwitchThemeApp> {
     final themeState = BlocProvider.of<DarkThemeCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      child: SwitchListTile(
+      child: ListTile(
         title: Text(
-          AppStrings.theme,
+          themeState.myCacheHelper.getData(key: AppConstant.themeStatus)
+              ? AppStrings.darkMode
+              : AppStrings.lightMode,
           style: AppStyles.style22,
         ),
-        secondary:
-            themeState.myCacheHelper.getData(key: AppConstant.themeStatus)
-                ? const Icon(Icons.dark_mode_outlined)
-                : const Icon(Icons.light_mode_outlined),
-        value: themeState.myCacheHelper.getData(key: AppConstant.themeStatus),
-        onChanged: (bool value) {
-          themeState.setDarkTheme = value;
-          setState(() {});
+        leading: themeState.myCacheHelper.getData(key: AppConstant.themeStatus)
+            ? const Icon(
+                Icons.dark_mode_outlined,
+                color: Colors.grey,
+              )
+            : const Icon(
+                Icons.light_mode_outlined,
+                color: Colors.grey,
+              ),
+        trailing: SizedBox(
+          width: 30,
+          child: Transform.scale(
+            scale: 0.8,
+            child: Switch(
+                value: themeState.myCacheHelper
+                    .getData(key: AppConstant.themeStatus),
+                onChanged: (bool value) {
+                  themeState.setDarkTheme = value;
+                  setState(() {});
+                },
+                activeColor: Colors.white,
+                inactiveThumbColor: Colors.grey,
+                activeTrackColor: const Color(0xFF00bed6).withOpacity(0.8)),
+          ),
+        ),
+        onTap: () {
+          // Handle tile tap if needed
         },
-        activeColor: Colors.amber, // Color for the active state
-        inactiveThumbColor: Colors.grey, // Color for the inactive state
-        activeTrackColor:
-            Colors.amber.withOpacity(0.5), // Track color when active
-        inactiveTrackColor: Colors.grey.withOpacity(0.5),
       ),
     );
   }

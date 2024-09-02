@@ -7,14 +7,14 @@ class AppStyles {
   );
   static TextStyle style24 = const TextStyle(
     fontSize: 24,
-    color: Colors.black,
   );
   static TextStyle style18 = const TextStyle(
     fontSize: 18,
-    color: Colors.black,
   );
   static TextStyle style22 = const TextStyle(
     fontSize: 22,
-    color: Colors.black,
+  );
+  static TextStyle style17 = const TextStyle(
+    fontSize: 17,
   );
 }

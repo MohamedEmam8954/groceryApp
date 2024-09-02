@@ -1,5 +1,6 @@
 class AppStrings {
-  static const String theme = "Theme";
+  static const String lightMode = "LightMode";
+  static const String darkMode = "DarkMode";
   static const String home = "Home";
   static const String category = "Category";
   static const String profile = "Profile";
@@ -11,4 +12,11 @@ class AppStrings {
   static const String viewed = "Viewed";
   static const String forgetPassword = "Forget Password";
   static const String logout = "Logout";
+  static const String update = "Update";
+  static const String youraddress = "Your Address";
+  static const String adressIsRequired = "Your address is required";
+  static const String signOut = "Sign Out";
+  static const String confirmSignout = "Do You Wanna Sign Out";
+  static const String cancel = "Cancel";
+  static const String ok = "Ok";
 }

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,12 +8,10 @@ import 'package:grocery/core/models/my_blocobserver.dart';
 import 'package:grocery/core/utils/dependencyInjection.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
   init();
   Bloc.observer = MyBlocObserver();
   await getIt.get<MyCacheHelper>().sharePerferences();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runApp(const GroceryApp());
-  });
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(const GroceryApp());
 }

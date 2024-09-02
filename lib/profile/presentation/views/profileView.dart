@@ -6,6 +6,10 @@ class Profileview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: ProfileViewBody());
+    return const SafeArea(
+      child: SingleChildScrollView(
+        child: ProfileViewBody(),
+      ),
+    );
   }
 }
