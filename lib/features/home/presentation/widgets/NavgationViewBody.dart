@@ -3,7 +3,7 @@ import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/features/categories/presentation/views/categoriesView.dart';
 import 'package:grocery/features/home/presentation/views/homeView.dart';
 import 'package:grocery/features/shopping/presentation/views/cartView.dart';
-import 'package:grocery/profile/presentation/views/profileView.dart';
+import 'package:grocery/features/profile/presentation/views/profileView.dart';
 import 'package:iconly/iconly.dart';
 
 class NavgationViewBody extends StatefulWidget {
@@ -14,7 +14,7 @@ class NavgationViewBody extends StatefulWidget {
 }
 
 class _NavgationViewBodyState extends State<NavgationViewBody> {
-  int index = 0;
+  int index = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
       // appBar: AppBar(
       //   title: Text(views[index]["title"]),
       // ),
-      body: views[index]["views"],
+      body: views[1]["views"],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         showSelectedLabels: false,

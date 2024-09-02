@@ -1,11 +1,13 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:grocery/core/utils/appAssets.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/utils/customtextformfield.dart';
-import 'package:grocery/profile/presentation/widgets/SwitchThemeApp.dart';
-import 'package:grocery/profile/presentation/widgets/meanuOptions.dart';
+import 'package:grocery/features/profile/presentation/widgets/SwitchThemeApp.dart';
+import 'package:grocery/features/profile/presentation/widgets/customSignout.dart';
+import 'package:grocery/features/profile/presentation/widgets/meanuOptions.dart';
 import 'package:iconly/iconly.dart';
 
 class AccountSettings extends StatefulWidget {
@@ -104,7 +106,7 @@ class _AccountSettingsState extends State<AccountSettings> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text(AppStrings.signOut),
+          title: const CustomSignOut(),
           content: const Text(AppStrings.confirmSignout),
           actions: [
             TextButton(

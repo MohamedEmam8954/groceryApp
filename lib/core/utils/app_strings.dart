@@ -16,7 +16,7 @@ class AppStrings {
   static const String youraddress = "Your Address";
   static const String adressIsRequired = "Your address is required";
   static const String signOut = "Sign Out";
-  static const String confirmSignout = "Do You Wanna Sign Out";
+  static const String confirmSignout = "Do You Wanna Sign Out ?";
   static const String cancel = "Cancel";
   static const String ok = "Ok";
 }
