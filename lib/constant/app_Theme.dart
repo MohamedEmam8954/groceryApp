@@ -54,6 +54,8 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         titleTextStyle:
             TextStyle(color: isDarkTheme ? Colors.white : Colors.black),
+        iconTheme:
+            IconThemeData(color: isDarkTheme ? Colors.white : Colors.black),
       ),
     );
   }

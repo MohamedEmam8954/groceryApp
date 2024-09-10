@@ -14,7 +14,10 @@ class OnsaleListView extends StatelessWidget {
         itemCount: 10,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return const OnSaleWidget();
+          return const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: OnSaleWidget(),
+          );
         },
       ),
     );

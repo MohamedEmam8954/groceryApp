@@ -25,4 +25,6 @@ class AppStyles {
   );
   static TextStyle style20 =
       const TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
+  static TextStyle style30 =
+      const TextStyle(fontSize: 30, fontWeight: FontWeight.w700);
 }

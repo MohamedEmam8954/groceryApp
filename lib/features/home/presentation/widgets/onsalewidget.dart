@@ -13,62 +13,59 @@ class OnSaleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Material(
-        color: Theme.of(context).cardColor.withOpacity(0.9),
+    return Material(
+      color: Theme.of(context).cardColor.withOpacity(0.9),
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(12),
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      width: size.width * 0.23,
-                      height: size.width * 0.23,
-                      Assets.assetsImagesCatNuts,
-                      fit: BoxFit.fill,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          "1 ${AppStrings.kg}",
-                          style: AppStyles.style22
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 6,
-                        ),
-                        ShoppingAndFavouriteIcon(
-                          onFavouriteTap: () {},
-                          onShoppingTap: () {},
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const FittedBox(
-                  child: PriceWidget(
-                    onsale: true,
-                    price: 3.66,
-                    onsaleprice: 2.5,
-                    textPrice: "1",
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    width: size.width * 0.23,
+                    height: size.width * 0.23,
+                    Assets.assetsImagesCatNuts,
+                    fit: BoxFit.fill,
                   ),
-                ),
-                Text(
-                  "Product",
-                  style: AppStyles.style16.copyWith(
-                    fontWeight: FontWeight.bold,
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        "1 ${AppStrings.kg}",
+                        style: AppStyles.style22
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      ShoppingAndFavouriteIcon(
+                        onFavouriteTap: () {},
+                        onShoppingTap: () {},
+                      ),
+                    ],
                   ),
+                ],
+              ),
+              const FittedBox(
+                child: PriceWidget(
+                  onsale: true,
+                  price: 3.66,
+                  onsaleprice: 2.5,
+                  textPrice: "1",
                 ),
-              ],
-            ),
+              ),
+              Text(
+                "Product",
+                style: AppStyles.style16.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ),

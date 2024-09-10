@@ -6,6 +6,7 @@ class ProductGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return GridView.count(
       shrinkWrap: true,
       crossAxisCount: 2,

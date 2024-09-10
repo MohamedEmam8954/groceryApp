@@ -31,4 +31,7 @@ class AppStrings {
   static const String onsale = "ONSALE";
   static const String browseAll = "Browse All";
   static const String ourProduct = "Our Product";
+  static const String productsOnSale = "Products on sale";
+  static const String noProductsOnSale =
+      "No Product on sale yet ! ,\nStay tuned";
 }

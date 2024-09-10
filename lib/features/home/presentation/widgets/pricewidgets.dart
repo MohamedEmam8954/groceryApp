@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 
@@ -20,7 +22,7 @@ class PriceWidget extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            "\$${(userprice * int.parse(textPrice)).toStringAsFixed(2)}",
+            "\$${(userprice * double.parse(textPrice)).toStringAsFixed(2)}",
             style: AppStyles.style18
                 .copyWith(color: Colors.green, fontWeight: FontWeight.w600),
           ),
@@ -30,7 +32,7 @@ class PriceWidget extends StatelessWidget {
           Visibility(
             visible: onsale ? true : false,
             child: Text(
-              "\$${(price * int.parse(textPrice)).toStringAsFixed(2)}",
+              "\$${(price * double.parse(textPrice)).toStringAsFixed(2)}",
               style: AppStyles.style15.copyWith(
                 fontWeight: FontWeight.w600,
                 decoration: TextDecoration.lineThrough,
