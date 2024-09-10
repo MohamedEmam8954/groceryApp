@@ -29,6 +29,7 @@ class AppTheme {
       textTheme: Theme.of(context).textTheme.apply(
             bodyColor: isDarkTheme ? Colors.white : Colors.black,
             displayColor: isDarkTheme ? Colors.white : Colors.black,
+            decorationColor: isDarkTheme ? Colors.white : Colors.black,
           ),
       listTileTheme: ListTileThemeData(
         textColor: isDarkTheme ? Colors.white : Colors.black,
@@ -49,6 +50,10 @@ class AppTheme {
           ),
           // You can add other styles here like padding, textStyle, etc., if needed
         ),
+      ),
+      appBarTheme: AppBarTheme(
+        titleTextStyle:
+            TextStyle(color: isDarkTheme ? Colors.white : Colors.black),
       ),
     );
   }

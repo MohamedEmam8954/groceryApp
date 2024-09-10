@@ -14,7 +14,7 @@ class NavgationViewBody extends StatefulWidget {
 }
 
 class _NavgationViewBodyState extends State<NavgationViewBody> {
-  int index = 1;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
       // appBar: AppBar(
       //   title: Text(views[index]["title"]),
       // ),
-      body: views[1]["views"],
+      body: views[index]["views"],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         showSelectedLabels: false,

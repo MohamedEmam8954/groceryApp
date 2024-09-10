@@ -11,10 +11,18 @@ class AppStyles {
   static TextStyle style18 = const TextStyle(
     fontSize: 18,
   );
+  static TextStyle style15 = const TextStyle(
+    fontSize: 15,
+  );
   static TextStyle style22 = const TextStyle(
     fontSize: 22,
+  );
+  static TextStyle style16 = const TextStyle(
+    fontSize: 16,
   );
   static TextStyle style17 = const TextStyle(
     fontSize: 17,
   );
+  static TextStyle style20 =
+      const TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
 }
