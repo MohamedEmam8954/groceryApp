@@ -5,7 +5,7 @@ import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/features/home/presentation/widgets/iconFav.dart';
 import 'package:grocery/features/home/presentation/widgets/incartBtn.dart';
 import 'package:grocery/features/home/presentation/widgets/pricewidgets.dart';
-import 'package:grocery/features/home/presentation/widgets/product_textfield.dart';
+import 'package:grocery/core/utils/product_textfield.dart';
 
 class GroceryProductHome extends StatefulWidget {
   const GroceryProductHome({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/features/home/presentation/widgets/groceryproductwidget.dart';
 
-class ProductGridView extends StatelessWidget {
-  const ProductGridView({super.key});
+class AllProductGridView extends StatelessWidget {
+  const AllProductGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ProductGridView extends StatelessWidget {
       childAspectRatio: 35 / 50,
       physics: const NeverScrollableScrollPhysics(),
       children: List.generate(
-        4,
+        20,
         (index) {
           return const GroceryProductHome();
         },

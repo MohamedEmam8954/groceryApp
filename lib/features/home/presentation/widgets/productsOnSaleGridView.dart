@@ -12,11 +12,12 @@ class ProductsOnSaleGridView extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 10,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 6,
             childAspectRatio: 165 / 150),
         itemBuilder: (context, index) {
           return const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.all(10.0),
             child: OnSaleWidget(),
           );
         },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/core/function/navigationApp.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
+import 'package:grocery/core/utils/go_router.dart';
 import 'package:grocery/features/home/presentation/widgets/productGridView.dart';
 
 class OurProductSection extends StatelessWidget {
@@ -20,7 +22,9 @@ class OurProductSection extends StatelessWidget {
                 style: AppStyles.style22.copyWith(fontWeight: FontWeight.bold),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  navTo(context, AppRouter.browseAllProduct);
+                },
                 child: Text(
                   AppStrings.browseAll,
                   style: AppStyles.style20,
