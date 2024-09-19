@@ -8,6 +8,7 @@ class CartListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: 10,
+      padding: const EdgeInsets.all(6),
       itemBuilder: (context, index) {
         return const CartBodyItem();
       },

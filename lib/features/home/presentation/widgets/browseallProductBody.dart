@@ -26,57 +26,55 @@ class _BrowseAllProductBodyState extends State<BrowseAllProductBody> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 100.0,
-                ),
-                child: TextField(
-                  minLines: 1,
-                  maxLines: 5,
-                  controller: controller,
-                  focusNode: focusNode,
-                  onChanged: (value) {
-                    setState(() {});
-                  },
-                  decoration: InputDecoration(
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 100.0,
+              ),
+              child: TextField(
+                minLines: 1,
+                maxLines: 5,
+                controller: controller,
+                focusNode: focusNode,
+                onChanged: (value) {
+                  setState(() {});
+                },
+                decoration: InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
                     ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    hintText: "What's Your In Mind ?",
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      size: 26,
-                    ),
-                    suffixIcon: focusNode.hasFocus
-                        ? IconButton(
-                            onPressed: () {
-                              controller.clear();
-                              focusNode.unfocus();
-                              setState(() {});
-                            },
-                            icon: const Icon(
-                              Icons.close,
-                              color: Colors.red,
-                            ),
-                          )
-                        : null,
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                  ),
+                  hintText: "What's Your In Mind ?",
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    size: 26,
+                  ),
+                  suffixIcon: focusNode.hasFocus
+                      ? IconButton(
+                          onPressed: () {
+                            controller.clear();
+                            focusNode.unfocus();
+                            setState(() {});
+                          },
+                          icon: const Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                        )
+                      : null,
                 ),
               ),
             ),

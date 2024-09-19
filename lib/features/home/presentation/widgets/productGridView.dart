@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/core/function/navigationApp.dart';
+import 'package:grocery/core/utils/go_router.dart';
 import 'package:grocery/features/home/presentation/widgets/groceryproductwidget.dart';
 
 class ProductGridView extends StatelessWidget {
@@ -17,7 +19,13 @@ class ProductGridView extends StatelessWidget {
       children: List.generate(
         4,
         (index) {
-          return const GroceryProductHome();
+          return InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: () {
+              navTo(context, AppRouter.showProduct);
+            },
+            child: const GroceryProductHome(),
+          );
         },
       ),
     );

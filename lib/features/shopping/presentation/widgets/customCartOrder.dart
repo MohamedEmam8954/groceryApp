@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
-import 'package:grocery/core/utils/customBtn.dart';
+import 'package:grocery/core/widgets/customBtn.dart';
 
 class CustomCartOrder extends StatelessWidget {
   const CustomCartOrder({super.key});
@@ -19,9 +19,14 @@ class CustomCartOrder extends StatelessWidget {
             width: 115,
             hight: 46,
           ),
-          Text(
-            "${AppStrings.total}\$ 3.98",
-            style: AppStyles.style20,
+          Flexible(
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                "${AppStrings.total} \$3.99", // Adjusted the value to be simpler
+                style: AppStyles.style20,
+              ),
+            ),
           ),
         ],
       ),

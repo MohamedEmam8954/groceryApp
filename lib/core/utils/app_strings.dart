@@ -26,7 +26,7 @@ class AppStrings {
   static const String grains = "Grains";
   static const String nuts = "Nuts";
   static const String viewAll = "View All";
-  static const String kg = "KG";
+  static const String kg = "Kg";
   static const String inCart = "In Cart";
   static const String onsale = "ONSALE";
   static const String browseAll = "Browse All";
@@ -37,4 +37,6 @@ class AppStrings {
   static const String allProducts = "All Products";
   static const String orderNow = "Order Now";
   static const String total = "Total: ";
+  static const String freeDelivery = "Free delivery";
+  static const String oneKg = "1Kg";
 }

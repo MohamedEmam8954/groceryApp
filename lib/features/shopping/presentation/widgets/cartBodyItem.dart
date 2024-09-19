@@ -1,28 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/appAssets.dart';
 import 'package:grocery/core/utils/app_styles.dart';
-import 'package:grocery/core/utils/customBtn.dart';
-import 'package:grocery/core/utils/product_textfield.dart';
+import 'package:grocery/core/widgets/add_or_minus_Product.dart';
 import 'package:grocery/features/home/presentation/widgets/iconFav.dart';
 
-class CartBodyItem extends StatefulWidget {
+class CartBodyItem extends StatelessWidget {
   const CartBodyItem({super.key});
-
-  @override
-  State<CartBodyItem> createState() => _CartBodyItemState();
-}
-
-class _CartBodyItemState extends State<CartBodyItem> {
-  TextEditingController controller = TextEditingController(text: '1');
-  int addProduct = 1;
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,56 +53,12 @@ class _CartBodyItemState extends State<CartBodyItem> {
                           const SizedBox(
                             height: 16,
                           ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: CustomBtn(
-                                  color: Colors.red,
-                                  ontap: () {
-                                    if (addProduct > 1) {
-                                      addProduct--;
-                                      controller.text = addProduct.toString();
-                                      log("add product -- $addProduct");
-                                    }
-                                    setState(() {});
-                                  },
-                                  title: "-",
-                                  width: 35,
-                                  hight: 35,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 40,
-                                child: ProductTextField(
-                                  controller: controller,
-                                  onchanged: (value) {
-                                    if (value.isEmpty) {
-                                      controller.text = '1';
-                                    }
-                                    addProduct = int.parse(controller.text);
-                                    log(addProduct.toString());
-                                    setState(() {});
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: CustomBtn(
-                                  ontap: () {
-                                    if (addProduct >= 1) {
-                                      addProduct++;
-                                      log("add product ++ $addProduct");
-                                      controller.text = addProduct.toString();
-                                    }
-                                    setState(() {});
-                                  },
-                                  title: "+",
-                                  width: 35,
-                                  hight: 35,
-                                ),
-                              ),
-                            ],
+                          //! replace in
+                          const AddOrMinusProduct(
+                            txtFieldSize: 40,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            addIcon: CupertinoIcons.add,
+                            minusIcon: CupertinoIcons.minus,
                           )
                         ],
                       ),
@@ -139,12 +79,9 @@ class _CartBodyItemState extends State<CartBodyItem> {
                             height: 10,
                           ),
                           IconFav(onFavTap: () {}),
-                          FittedBox(
-                            fit: BoxFit.fitHeight,
-                            child: Text(
-                              "\$ 3.999",
-                              style: AppStyles.style20,
-                            ),
+                          Text(
+                            "\$ 33.9",
+                            style: AppStyles.style20,
                           ),
                         ],
                       )

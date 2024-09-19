@@ -2,11 +2,13 @@ import 'package:go_router/go_router.dart';
 import 'package:grocery/features/home/presentation/views/browseAllProduct.dart';
 import 'package:grocery/features/home/presentation/views/navgationView.dart';
 import 'package:grocery/features/home/presentation/views/onsaleView.dart';
+import 'package:grocery/features/home/presentation/views/show_productview.dart';
 
 class AppRouter {
   static String onsaleView = "/OnSale";
   static String navigation = "/";
   static String browseAllProduct = "/browseallproduct";
+  static String showProduct = "/showProduct";
   static GoRouter goRoute = GoRouter(
     routes: [
       GoRoute(
@@ -22,6 +24,10 @@ class AppRouter {
       GoRoute(
         path: browseAllProduct,
         builder: (context, state) => const BrowseAllProductView(),
+      ),
+      GoRoute(
+        path: showProduct,
+        builder: (context, state) => const ShowProductView(),
       ),
     ],
   );
