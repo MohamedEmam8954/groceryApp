@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:grocery/core/function/navigationApp.dart';
 import 'package:grocery/core/utils/appAssets.dart';
 import 'package:grocery/core/widgets/add_or_minus_Product.dart';
+import 'package:grocery/core/widgets/backwidget.dart';
 import 'package:grocery/features/home/presentation/widgets/showProductData.dart';
 import 'package:grocery/features/home/presentation/widgets/totalPriceIncart.dart';
-import 'package:iconly/iconly.dart';
 
 class ShowProductBody extends StatelessWidget {
   const ShowProductBody({super.key});
@@ -14,14 +12,9 @@ class ShowProductBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
+        const Align(
           alignment: Alignment.centerLeft,
-          child: IconButton(
-            onPressed: () {
-              Navigator.canPop(context) ? popAppRouter(context) : null;
-            },
-            icon: const Icon(IconlyLight.arrow_left_2),
-          ),
+          child: BackWidget(),
         ),
         Flexible(
           flex: 2,

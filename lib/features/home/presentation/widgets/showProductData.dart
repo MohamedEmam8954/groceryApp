@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
-import 'package:grocery/features/home/presentation/widgets/iconFav.dart';
+import 'package:grocery/core/widgets/iconFav.dart';
 import 'package:grocery/features/home/presentation/widgets/price_per_widget.dart';
 
 class ShowProductData extends StatelessWidget {

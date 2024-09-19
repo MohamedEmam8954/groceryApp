@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/appAssets.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/add_or_minus_Product.dart';
-import 'package:grocery/features/home/presentation/widgets/iconFav.dart';
+import 'package:grocery/core/widgets/iconFav.dart';
 
 class CartBodyItem extends StatelessWidget {
   const CartBodyItem({super.key});

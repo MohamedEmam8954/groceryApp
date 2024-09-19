@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/utils/app_styles.dart';
+import 'package:grocery/core/utils/app_strings.dart';
+import 'package:grocery/core/widgets/totalcartappbar.dart';
 import 'package:grocery/features/shopping/presentation/widgets/cartViewBody.dart';
-import 'package:iconly/iconly.dart';
 
 class Cartview extends StatelessWidget {
   const Cartview({super.key});
@@ -9,18 +9,10 @@ class Cartview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Cart(2)",
-          style: AppStyles.style24,
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(IconlyLight.delete),
-          ),
-        ],
+      appBar: TotalCartAppBar(
+        title: AppStrings.cart,
+        numberofProduct: "3",
+        deleteOnTap: () {},
       ),
       body: const CartViewBody(),
     );

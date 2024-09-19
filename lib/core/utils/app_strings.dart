@@ -8,7 +8,7 @@ class AppStrings {
   static const String hi = "Hi, ";
   static const String address = "Address";
   static const String orders = "Orders";
-  static const String wishList = "WishList";
+  static const String wishList = "Wishlist";
   static const String viewed = "Viewed";
   static const String forgetPassword = "Forget Password";
   static const String logout = "Logout";

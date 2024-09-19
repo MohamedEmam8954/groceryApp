@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/widgets/customAppBar.dart';
+import 'package:grocery/core/utils/app_strings.dart';
+import 'package:grocery/core/widgets/totalcartappbar.dart';
 import 'package:grocery/features/profile/presentation/widgets/wishListViewBody.dart';
 
 class WishListView extends StatelessWidget {
@@ -7,9 +8,15 @@ class WishListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
-        body: WishListViewBody(),
+        appBar: TotalCartAppBar(
+          isback: true,
+          title: AppStrings.wishList,
+          numberofProduct: "4",
+          deleteOnTap: () {},
+        ),
+        body: const WishListViewBody(),
       ),
     );
   }

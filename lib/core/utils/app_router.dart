@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:grocery/features/home/presentation/views/browseAllProduct.dart';
 import 'package:grocery/features/home/presentation/views/navgationView.dart';
 import 'package:grocery/features/home/presentation/views/onsaleView.dart';
+import 'package:grocery/features/home/presentation/views/show_productview.dart';
 import 'package:grocery/features/profile/presentation/views/wishlistview.dart';
 
 class AppRouter {
@@ -25,6 +26,10 @@ class AppRouter {
       GoRoute(
         path: browseAllProduct,
         builder: (context, state) => const BrowseAllProductView(),
+      ),
+      GoRoute(
+        path: showProduct,
+        builder: (context, state) => const ShowProductView(),
       ),
       GoRoute(
         path: wishListView,

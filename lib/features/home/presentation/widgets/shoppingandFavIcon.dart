@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/features/home/presentation/widgets/iconFav.dart';
+import 'package:grocery/core/widgets/iconFav.dart';
 import 'package:iconly/iconly.dart';
 
 class ShoppingAndFavouriteIcon extends StatelessWidget {
