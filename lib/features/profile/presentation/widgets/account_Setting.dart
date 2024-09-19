@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:grocery/core/function/navigationApp.dart';
+import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/customtextformfield.dart';
@@ -41,7 +43,9 @@ class _AccountSettingsState extends State<AccountSettings> {
             leadingIcon: IconlyLight.bag,
             title: AppStrings.orders),
         MeanuOptions(
-            ontap: () {},
+            ontap: () {
+              navTo(context, AppRouter.wishListView);
+            },
             leadingIcon: IconlyLight.heart,
             title: AppStrings.wishList),
         MeanuOptions(

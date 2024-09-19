@@ -13,16 +13,18 @@ class ShowProductBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        IconButton(
-          onPressed: () {
-            popAppRouter(context);
-          },
-          icon: const Icon(IconlyLight.arrow_left_2),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: IconButton(
+            onPressed: () {
+              Navigator.canPop(context) ? popAppRouter(context) : null;
+            },
+            icon: const Icon(IconlyLight.arrow_left_2),
+          ),
         ),
-        AspectRatio(
-          aspectRatio: 2.5 / 1.6,
+        Flexible(
+          flex: 2,
           child: Image.asset(
             Assets.assetsImagesCatVeg,
             fit: BoxFit.fill,
@@ -38,8 +40,8 @@ class ShowProductBody extends StatelessWidget {
         ),
         const AddOrMinusProduct(
           txtFieldSize: 80,
-          addIcon: CupertinoIcons.add,
-          minusIcon: CupertinoIcons.minus,
+          addIcon: CupertinoIcons.plus_square,
+          minusIcon: CupertinoIcons.minus_square,
         ),
         const Expanded(
           child: SizedBox(

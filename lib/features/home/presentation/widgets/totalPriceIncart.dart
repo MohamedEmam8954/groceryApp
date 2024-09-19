@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
-
 import 'price_per_widget.dart';
 
 class TotalPriceInCart extends StatelessWidget {
@@ -41,7 +40,7 @@ class TotalPriceInCart extends StatelessWidget {
                 ),
                 CustomBtn(
                   ontap: ontap,
-                  title: AppStrings.inCart,
+                  title: AppStrings.addToCart,
                   padding: 10,
                 ),
               ],

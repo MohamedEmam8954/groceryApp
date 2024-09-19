@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "F:/test/abdelsatar_tasks/grocery/linux"
+    "cmake.sourceDirectory": "F:/test/abdelsatar_tasks/grocery/linux",
+    "git.ignoreLimitWarning": true
 }

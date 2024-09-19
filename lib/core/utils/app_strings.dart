@@ -39,4 +39,5 @@ class AppStrings {
   static const String total = "Total: ";
   static const String freeDelivery = "Free delivery";
   static const String oneKg = "1Kg";
+  static const String addToCart = "Add to cart";
 }
