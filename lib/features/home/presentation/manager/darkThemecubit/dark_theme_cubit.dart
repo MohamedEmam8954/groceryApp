@@ -32,4 +32,8 @@ class DarkThemeCubit extends Cubit<DarkThemeState> {
       return Colors.black;
     }
   }
+
+  bool getTheme() {
+    return myCacheHelper.getData(key: AppConstant.themeStatus);
+  }
 }

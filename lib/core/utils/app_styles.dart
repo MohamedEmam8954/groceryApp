@@ -23,6 +23,11 @@ class AppStyles {
   static TextStyle style17 = const TextStyle(
     fontSize: 17,
   );
+  static TextStyle style40 = const TextStyle(
+    color: Colors.red,
+    fontWeight: FontWeight.w700,
+    fontSize: 40,
+  );
   static TextStyle style20 =
       const TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
   static TextStyle style30 =

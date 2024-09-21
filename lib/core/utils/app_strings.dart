@@ -46,4 +46,14 @@ class AppStrings {
   static const String yourOrder = "Your Order";
   static const String history = "History";
   static const String emptyHistory = "Empty Your History?";
+  static const String whoops = "Whoops!";
+  static const String yourCartempty = "Your cart is empty";
+  static const String addSomethingMakeMeHappy =
+      "add something and make me happy :)";
+  static const String shopNow = "Shop now";
+  static const String yourhistoryempty = "Your history is empty";
+  static const String noproductshasbeenviewed = "No products has been viewed";
+  static const String yourwishlistempty = "Your wishlist is empty";
+  static const String exploremoreandshortlistsomeitems =
+      "Explore more and shortlist some items";
 }
