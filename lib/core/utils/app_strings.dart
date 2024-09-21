@@ -44,4 +44,6 @@ class AppStrings {
   static const String emptyWishlist = "Empty Your Wishlist?";
   static const String areYouSure = "are You Sure?";
   static const String yourOrder = "Your Order";
+  static const String history = "History";
+  static const String emptyHistory = "Empty Your History?";
 }
