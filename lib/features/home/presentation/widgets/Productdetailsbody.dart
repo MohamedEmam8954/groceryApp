@@ -5,8 +5,8 @@ import 'package:grocery/core/widgets/backwidget.dart';
 import 'package:grocery/features/home/presentation/widgets/showProductData.dart';
 import 'package:grocery/features/home/presentation/widgets/totalPriceIncart.dart';
 
-class ShowProductBody extends StatelessWidget {
-  const ShowProductBody({super.key});
+class ProductDetailsBody extends StatelessWidget {
+  const ProductDetailsBody({super.key});
 
   @override
   Widget build(BuildContext context) {

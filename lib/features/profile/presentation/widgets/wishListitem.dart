@@ -20,7 +20,7 @@ class WishlistItem extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: GestureDetector(
         onTap: () {
-          navTo(context, AppRouter.showProduct);
+          navTo(context, AppRouter.productDetails);
         },
         child: Container(
           height: size.height * 0.20,

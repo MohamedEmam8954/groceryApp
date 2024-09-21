@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:grocery/core/function/warningdialog.dart';
 import 'package:grocery/core/utils/app_strings.dart';

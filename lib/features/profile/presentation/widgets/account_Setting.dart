@@ -4,10 +4,9 @@ import 'package:grocery/core/function/navigationApp.dart';
 import 'package:grocery/core/function/warningdialog.dart';
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
-import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/customtextformfield.dart';
 import 'package:grocery/features/profile/presentation/widgets/SwitchThemeApp.dart';
-import 'package:grocery/features/profile/presentation/widgets/customSignout.dart';
+
 import 'package:grocery/features/profile/presentation/widgets/meanuOptions.dart';
 import 'package:iconly/iconly.dart';
 
@@ -52,7 +51,9 @@ class _AccountSettingsState extends State<AccountSettings> {
             leadingIcon: IconlyLight.heart,
             title: AppStrings.wishList),
         MeanuOptions(
-            ontap: () {},
+            ontap: () {
+              navTo(context, AppRouter.historyView);
+            },
             leadingIcon: IconlyLight.show,
             title: AppStrings.viewed),
         MeanuOptions(

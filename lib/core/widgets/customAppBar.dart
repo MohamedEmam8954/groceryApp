@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/function/navigationApp.dart';
 import 'package:grocery/core/utils/app_styles.dart';
-import 'package:iconly/iconly.dart';
+import 'package:grocery/core/widgets/backwidget.dart';
+import 'package:grocery/core/widgets/bagicon.dart';
+import 'package:grocery/core/widgets/iconFav.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -15,14 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      leading: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: () {
-          popAppRouter(context);
-        },
-        child: const Icon(IconlyLight.arrow_left_2),
-      ),
+      leading: const BackWidget(),
       title: Text(
         title,
         style: AppStyles.style24.copyWith(fontWeight: FontWeight.w600),
@@ -33,10 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   List<Widget> _icons() {
-    return [
-      IconButton(onPressed: () {}, icon: const Icon(IconlyLight.bag_2)),
-      IconButton(onPressed: () {}, icon: const Icon(IconlyLight.heart)),
-    ];
+    return [IconBag(onBagTap: () {}), IconFav(onFavTap: () {})];
   }
 
   @override

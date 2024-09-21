@@ -22,7 +22,7 @@ class ProductGridView extends StatelessWidget {
           return InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: () {
-              navTo(context, AppRouter.showProduct);
+              navTo(context, AppRouter.productDetails);
             },
             child: const GroceryProductHome(),
           );
