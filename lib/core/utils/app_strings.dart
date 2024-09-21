@@ -40,4 +40,8 @@ class AppStrings {
   static const String freeDelivery = "Free delivery";
   static const String oneKg = "1Kg";
   static const String addToCart = "Add to cart";
+  static const String emptyCart = "Empty Your Cart?";
+  static const String emptyWishlist = "Empty Your Wishlist?";
+  static const String areYouSure = "are You Sure?";
+  static const String yourOrder = "Your Order";
 }

@@ -3,6 +3,7 @@ import 'package:grocery/features/home/presentation/views/browseAllProduct.dart';
 import 'package:grocery/features/home/presentation/views/navgationView.dart';
 import 'package:grocery/features/home/presentation/views/onsaleView.dart';
 import 'package:grocery/features/home/presentation/views/show_productview.dart';
+import 'package:grocery/features/profile/presentation/views/orderview.dart';
 import 'package:grocery/features/profile/presentation/views/wishlistview.dart';
 
 class AppRouter {
@@ -11,6 +12,7 @@ class AppRouter {
   static String browseAllProduct = "/browseallproduct";
   static String showProduct = "/showProduct";
   static String wishListView = "/wishListView";
+  static String orderView = "/orderview";
   static GoRouter goRoute = GoRouter(
     routes: [
       GoRoute(
@@ -34,6 +36,10 @@ class AppRouter {
       GoRoute(
         path: wishListView,
         builder: (context, state) => const WishListView(),
+      ),
+      GoRoute(
+        path: orderView,
+        builder: (context, state) => const OrderView(),
       ),
     ],
   );

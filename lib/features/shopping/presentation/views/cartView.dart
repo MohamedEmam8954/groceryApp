@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:grocery/core/function/warningdialog.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/widgets/totalcartappbar.dart';
 import 'package:grocery/features/shopping/presentation/widgets/cartViewBody.dart';
@@ -12,7 +15,14 @@ class Cartview extends StatelessWidget {
       appBar: TotalCartAppBar(
         title: AppStrings.cart,
         numberofProduct: "3",
-        deleteOnTap: () {},
+        deleteOnTap: () {
+          GlobalMethod.warningDialog(
+            context,
+            title: AppStrings.emptyCart,
+            subTitle: AppStrings.areYouSure,
+            onTapOK: () {},
+          );
+        },
       ),
       body: const CartViewBody(),
     );

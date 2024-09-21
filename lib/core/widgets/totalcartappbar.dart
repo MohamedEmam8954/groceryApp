@@ -8,14 +8,17 @@ class TotalCartAppBar extends StatelessWidget implements PreferredSizeWidget {
       {super.key,
       required this.title,
       required this.numberofProduct,
-      required this.deleteOnTap,
-      this.isback = false});
+      this.deleteOnTap,
+      this.isback = false,
+      this.centertitle = false,
+      this.isdeleteicon = true});
   final String title, numberofProduct;
-  final VoidCallback deleteOnTap;
-  final bool isback;
+  final VoidCallback? deleteOnTap;
+  final bool isback, centertitle, isdeleteicon;
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: centertitle,
       automaticallyImplyLeading: false,
       leading: isback ? const BackWidget() : null,
       title: Text(
@@ -23,12 +26,14 @@ class TotalCartAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: AppStyles.style20.copyWith(fontWeight: FontWeight.w700),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(IconlyLight.delete),
-        ),
-      ],
+      actions: isdeleteicon
+          ? [
+              IconButton(
+                onPressed: deleteOnTap,
+                icon: const Icon(IconlyLight.delete),
+              )
+            ]
+          : null,
     );
   }
 

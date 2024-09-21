@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:grocery/core/function/navigationApp.dart';
+import 'package:grocery/core/function/warningdialog.dart';
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
@@ -39,7 +40,9 @@ class _AccountSettingsState extends State<AccountSettings> {
           subtitle: "Subtitle",
         ),
         MeanuOptions(
-            ontap: () {},
+            ontap: () {
+              navTo(context, AppRouter.orderView);
+            },
             leadingIcon: IconlyLight.bag,
             title: AppStrings.orders),
         MeanuOptions(
@@ -58,8 +61,13 @@ class _AccountSettingsState extends State<AccountSettings> {
             title: AppStrings.forgetPassword),
         const SwitchThemeApp(),
         MeanuOptions(
-            ontap: () async {
-              await _showLogoutDialog(context);
+            ontap: () {
+              GlobalMethod.warningDialog(
+                context,
+                title: AppStrings.signOut,
+                subTitle: AppStrings.confirmSignout,
+                onTapOK: () {},
+              );
             },
             leadingIcon: IconlyLight.logout,
             title: AppStrings.logout),
@@ -97,43 +105,6 @@ class _AccountSettingsState extends State<AccountSettings> {
               },
               child: const Text(AppStrings.update),
             )
-          ],
-        );
-      },
-    );
-  }
-
-  Future _showLogoutDialog(context) async {
-    return await showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const CustomSignOut(),
-          content: const Text(AppStrings.confirmSignout),
-          actions: [
-            TextButton(
-              onPressed: () {
-                //!
-
-                log("Cancel");
-                Navigator.pop(context);
-              },
-              child: Text(
-                AppStrings.cancel,
-                style: AppStyles.style17,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                //!
-                log("Sign Out");
-                Navigator.pop(context);
-              },
-              child: Text(
-                AppStrings.ok,
-                style: AppStyles.style17.copyWith(color: Colors.red),
-              ),
-            ),
           ],
         );
       },

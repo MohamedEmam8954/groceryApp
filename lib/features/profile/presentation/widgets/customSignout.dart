@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/appAssets.dart';
-import 'package:grocery/core/utils/app_strings.dart';
 
 class CustomSignOut extends StatelessWidget {
-  const CustomSignOut({super.key});
-
+  const CustomSignOut({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,7 +17,7 @@ class CustomSignOut extends StatelessWidget {
         const SizedBox(
           width: 8,
         ),
-        const Text(AppStrings.signOut),
+        Text(title),
       ],
     );
   }
