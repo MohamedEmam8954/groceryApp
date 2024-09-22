@@ -10,12 +10,18 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     required this.hintext,
     required this.controller,
+    required this.maxlines,
+    this.isauth = false,
+    this.suffixicon,
   });
 
   final void Function(String)? oncChanged;
   final String? Function(String?)? validator;
   final String hintext;
   final TextEditingController controller;
+  final int maxlines;
+  final bool isauth;
+  final IconData? suffixicon;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +39,25 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       validator: validator,
       onChanged: oncChanged,
-      maxLines: 5,
+      style: TextStyle(color: isauth ? Colors.white : null, fontSize: 16),
+      maxLines: 1,
       decoration: InputDecoration(
-          hintText: hintext, hintStyle: TextStyle(color: hintTextColor)),
+        border: underlineInputBorder(),
+        enabledBorder: underlineInputBorder(),
+        focusedBorder: underlineInputBorder(),
+        hintText: hintext,
+        hintStyle: TextStyle(color: isauth ? Colors.white : hintTextColor),
+        suffixIcon: Icon(
+          suffixicon,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  UnderlineInputBorder underlineInputBorder() {
+    return UnderlineInputBorder(
+      borderSide: BorderSide(color: isauth ? Colors.white : Colors.black),
     );
   }
 }

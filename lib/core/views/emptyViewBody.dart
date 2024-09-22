@@ -68,6 +68,7 @@ class EmptyView extends StatelessWidget {
                     height: 40,
                   ),
                   CustomBtn(
+                    radius: 10,
                     ontap: () {
                       navTo(context, AppRouter.browseAllProduct);
                     },

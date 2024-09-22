@@ -34,6 +34,7 @@ flutter:
     - assets/images/
     - assets/images/cat/
     - assets/images/offres/
+    - assets/images/landing/
 
 # Custom configuration for flutter_assets
 flutter_assets:

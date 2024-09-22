@@ -39,6 +39,7 @@ class TotalPriceInCart extends StatelessWidget {
                   ],
                 ),
                 CustomBtn(
+                  radius: 10,
                   ontap: ontap,
                   title: AppStrings.addToCart,
                   padding: 10,

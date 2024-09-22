@@ -14,6 +14,7 @@ class CustomCartOrder extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CustomBtn(
+            radius: 10,
             ontap: () {},
             title: AppStrings.orderNow,
             width: 115,

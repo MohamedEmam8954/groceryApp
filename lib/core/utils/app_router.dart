@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:grocery/features/auth/presentation/views/loginview.dart';
 import 'package:grocery/features/home/presentation/views/browseAllProduct.dart';
 import 'package:grocery/features/home/presentation/views/navgationView.dart';
 import 'package:grocery/features/home/presentation/views/onsaleView.dart';
@@ -8,8 +9,9 @@ import 'package:grocery/features/profile/presentation/views/orderview.dart';
 import 'package:grocery/features/profile/presentation/views/wishlistview.dart';
 
 class AppRouter {
+  static String loginView = "/";
   static String onsaleView = "/OnSale";
-  static String navigation = "/";
+  static String navigation = "/navgation";
   static String browseAllProduct = "/browseallproduct";
   static String productDetails = "/Productdetails";
   static String wishListView = "/wishListView";
@@ -18,6 +20,10 @@ class AppRouter {
 
   static GoRouter goRoute = GoRouter(
     routes: [
+      GoRoute(
+        path: loginView,
+        builder: (context, state) => const LoginView(),
+      ),
       GoRoute(
         path: onsaleView,
         builder: (context, state) => const OnSaleView(

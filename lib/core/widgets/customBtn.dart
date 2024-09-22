@@ -12,12 +12,16 @@ class CustomBtn extends StatelessWidget {
       this.padding,
       this.icon,
       this.textcolor,
-      this.bordercolor});
+      this.bordercolor,
+      required this.radius,
+      this.isBorder = true});
   final VoidCallback ontap;
   final String? title;
   final IconData? icon;
   final double? width, hight, padding;
   final Color? color, textcolor, bordercolor;
+  final double radius;
+  final bool isBorder;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -28,9 +32,11 @@ class CustomBtn extends StatelessWidget {
         width: width,
         height: hight,
         decoration: BoxDecoration(
-            color: color ?? Colors.green,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: textcolor ?? Colors.white)),
+          color: color ?? Colors.green,
+          borderRadius: BorderRadius.circular(10),
+          border:
+              isBorder ? Border.all(color: textcolor ?? Colors.white) : null,
+        ),
         child: icon is IconData
             ? Icon(
                 icon,
@@ -40,7 +46,7 @@ class CustomBtn extends StatelessWidget {
             : Text(
                 title!,
                 style: AppStyles.style18.copyWith(
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                   color: textcolor ?? Colors.white,
                 ),
               ),

@@ -52,6 +52,7 @@ class ShowProductData extends StatelessWidget {
                 Visibility(
                   visible: freeDeliveryVisible,
                   child: CustomBtn(
+                    radius: 10,
                     ontap: () {},
                     title: AppStrings.freeDelivery,
                     padding: 7,

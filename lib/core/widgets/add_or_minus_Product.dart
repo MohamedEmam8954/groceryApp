@@ -36,6 +36,7 @@ class _AddOrMinusProductState extends State<AddOrMinusProduct> {
         Padding(
           padding: const EdgeInsets.only(right: 10),
           child: CustomBtn(
+            radius: 10,
             color: Colors.red,
             ontap: () {
               if (addProduct > 1) {
@@ -67,6 +68,7 @@ class _AddOrMinusProductState extends State<AddOrMinusProduct> {
         Padding(
           padding: const EdgeInsets.only(left: 10),
           child: CustomBtn(
+            radius: 10,
             ontap: () {
               if (addProduct >= 1) {
                 addProduct++;

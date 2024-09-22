@@ -51,6 +51,7 @@ class HistoryViewItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: CustomBtn(
+                  radius: 10,
                   color: Colors.green,
                   ontap: () {},
                   icon: CupertinoIcons.plus,

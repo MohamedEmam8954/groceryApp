@@ -56,4 +56,15 @@ class AppStrings {
   static const String yourwishlistempty = "Your wishlist is empty";
   static const String exploremoreandshortlistsomeitems =
       "Explore more and shortlist some items";
+  static const String welcomeBack = "Welcome Back";
+  static const String signInToContinue = "Sign in to continue";
+  static const String email = "Email";
+  static const String password = "Password";
+  static const String kforgetpassword = "Forget password?";
+  static const String signIn = "Sign in";
+  static const String signInWithGoogle = "Sign in With Google";
+  static const String or = "OR";
+  static const String continueasguest = "Continue as a guest";
+  static const String donthaveaccount = "Don't have an account?";
+  static const String signup = " Sign up";
 }
