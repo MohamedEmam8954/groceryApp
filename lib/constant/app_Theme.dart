@@ -24,7 +24,9 @@ class AppTheme {
         backgroundColor: isDarkTheme ? const Color(0xFF0a0d2c) : Colors.white,
         selectedItemColor:
             isDarkTheme ? Colors.lightBlue.shade200 : Colors.black,
-        unselectedItemColor: isDarkTheme ? Colors.white70 : Colors.black54,
+        unselectedItemColor: isDarkTheme
+            ? Colors.grey.withOpacity(0.09)
+            : Colors.grey.withOpacity(0.3),
       ),
       textTheme: Theme.of(context).textTheme.apply(
             bodyColor: isDarkTheme ? Colors.white : Colors.black,

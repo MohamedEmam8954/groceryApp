@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/app_strings.dart';
+import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/features/categories/presentation/views/categoriesView.dart';
 import 'package:grocery/features/home/presentation/views/homeView.dart';
 import 'package:grocery/features/shopping/presentation/views/cartView.dart';
 import 'package:grocery/features/profile/presentation/views/profileView.dart';
 import 'package:iconly/iconly.dart';
+import 'package:badges/badges.dart' as badges;
 
 class NavgationViewBody extends StatefulWidget {
   const NavgationViewBody({super.key});
@@ -39,7 +41,53 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
             label: AppStrings.category,
           ),
           BottomNavigationBarItem(
-            icon: index == 2 ? Icon(iconlyBold[2]) : Icon(iconlyLight[2]),
+            icon: index == 2
+                ? badges.Badge(
+                    position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                    badgeAnimation: const badges.BadgeAnimation.rotation(
+                      animationDuration: Duration(seconds: 1),
+                      colorChangeAnimationDuration: Duration(seconds: 1),
+                      loopAnimation: false,
+                      curve: Curves.fastOutSlowIn,
+                      colorChangeAnimationCurve: Curves.easeInCubic,
+                    ),
+                    showBadge: true,
+                    badgeContent: FittedBox(
+                      child: Text(
+                        "1",
+                        style: AppStyles.style15.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    badgeStyle:
+                        const badges.BadgeStyle(badgeColor: Colors.blue),
+                    onTap: () {},
+                    child: Icon(iconlyBold[2]),
+                  )
+                : badges.Badge(
+                    position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                    showBadge: true,
+                    badgeAnimation: const badges.BadgeAnimation.rotation(
+                      animationDuration: Duration(seconds: 1),
+                      colorChangeAnimationDuration: Duration(seconds: 1),
+                      loopAnimation: false,
+                      curve: Curves.fastOutSlowIn,
+                      colorChangeAnimationCurve: Curves.easeInCubic,
+                    ),
+                    badgeContent: FittedBox(
+                      child: Text(
+                        "5",
+                        style: AppStyles.style15.copyWith(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    badgeStyle:
+                        const badges.BadgeStyle(badgeColor: Colors.blue),
+                    onTap: () {},
+                    child: Icon(iconlyLight[2]),
+                  ),
             label: AppStrings.cart,
           ),
           BottomNavigationBarItem(
