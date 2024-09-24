@@ -4,14 +4,14 @@ import 'package:grocery/core/widgets/customBtn.dart';
 import 'package:grocery/core/widgets/customtextformfield.dart';
 import 'package:grocery/features/auth/presentation/widgets/forgetPasswordbtn.dart';
 
-class CustomLoginAuth extends StatefulWidget {
-  const CustomLoginAuth({super.key});
+class CustomSignUPAuth extends StatefulWidget {
+  const CustomSignUPAuth({super.key});
 
   @override
-  State<CustomLoginAuth> createState() => _CustomLoginAuthState();
+  State<CustomSignUPAuth> createState() => _CustomSignUPAuthState();
 }
 
-class _CustomLoginAuthState extends State<CustomLoginAuth> {
+class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
   var globalkey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isvisable = false;
@@ -24,6 +24,25 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
+          CustomTextFormField(
+            textInputAction: TextInputAction.next,
+            textInputType: TextInputType.name,
+            hintext: AppStrings.fullname,
+            oneditingcomplete: () =>
+                FocusScope.of(context).requestFocus(focusNode),
+            maxlines: 1,
+            isauth: true,
+            oncChanged: (value) {},
+            validator: (value) {
+              if (value!.isEmpty) {
+                return AppStrings.enterValidname;
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           CustomTextFormField(
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
@@ -45,7 +64,7 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
           ),
 
           CustomTextFormField(
-            textInputAction: TextInputAction.done,
+            textInputAction: TextInputAction.next,
             textInputType: TextInputType.visiblePassword,
             hintext: AppStrings.password,
             obscureText: !isvisable ? true : false,
@@ -70,6 +89,25 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
           const SizedBox(
             height: 10,
           ),
+          CustomTextFormField(
+            textInputAction: TextInputAction.done,
+            textInputType: TextInputType.streetAddress,
+            hintext: AppStrings.shippingAddress,
+            oneditingcomplete: () =>
+                FocusScope.of(context).requestFocus(focusNode),
+            maxlines: 1,
+            isauth: true,
+            oncChanged: (value) {},
+            validator: (value) {
+              if (value!.isEmpty) {
+                return AppStrings.enterValidshippingaddress;
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           //! forget password
           ForgetPasswordBtn(ontap: () {}),
           const SizedBox(
@@ -86,7 +124,7 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
                 setState(() {});
               }
             },
-            title: AppStrings.signIn,
+            title: AppStrings.signup,
             color: Colors.grey.withOpacity(0.6),
             isBorder: false,
           ),

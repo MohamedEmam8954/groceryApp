@@ -67,4 +67,15 @@ class AppStrings {
   static const String continueasguest = "Continue as a guest";
   static const String donthaveaccount = "Don't have an account?";
   static const String signup = " Sign up";
+  static const String enterValidEmailAddress =
+      "Please enter a vaild email address";
+  static const String enterValidPassword = "Please enter a vaild Password";
+  static const String welcome = "Welcome";
+  static const String signUpToContinue = "Sign up to continue";
+  static const String fullname = "Full name";
+  static const String shippingAddress = "Shipping address";
+  static const String alreadyauser = "Already a User";
+  static const String enterValidname = "Please enter a vaild name";
+  static const String enterValidshippingaddress =
+      "Please enter a vaild Shipping address";
 }

@@ -4,24 +4,32 @@ import 'package:grocery/constant/constant.dart';
 import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
-    super.key,
-    this.oncChanged,
-    this.validator,
-    required this.hintext,
-    required this.controller,
-    required this.maxlines,
-    this.isauth = false,
-    this.suffixicon,
-  });
+  const CustomTextFormField(
+      {super.key,
+      this.oncChanged,
+      this.validator,
+      required this.hintext,
+      this.controller,
+      required this.maxlines,
+      this.isauth = false,
+      this.suffixicon,
+      this.onTapSuffixicon,
+      this.obscureText = false,
+      this.oneditingcomplete,
+      required this.textInputType,
+      this.textInputAction});
 
   final void Function(String)? oncChanged;
   final String? Function(String?)? validator;
   final String hintext;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final int maxlines;
   final bool isauth;
   final IconData? suffixicon;
+  final VoidCallback? onTapSuffixicon, oneditingcomplete;
+  final bool obscureText;
+  final TextInputType textInputType;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +44,13 @@ class CustomTextFormField extends StatelessWidget {
             ?.withOpacity(0.7) // Use a lighter color for dark theme
         : theme.textTheme.bodySmall?.color?.withOpacity(0.7);
     return TextFormField(
+      keyboardType: textInputType,
+      textInputAction: textInputAction,
       controller: controller,
       validator: validator,
       onChanged: oncChanged,
+      obscureText: obscureText,
+      onEditingComplete: oneditingcomplete,
       style: TextStyle(color: isauth ? Colors.white : null, fontSize: 16),
       maxLines: 1,
       decoration: InputDecoration(
@@ -47,9 +59,12 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder: underlineInputBorder(),
         hintText: hintext,
         hintStyle: TextStyle(color: isauth ? Colors.white : hintTextColor),
-        suffixIcon: Icon(
-          suffixicon,
-          color: Colors.white,
+        suffixIcon: IconButton(
+          onPressed: onTapSuffixicon,
+          icon: Icon(
+            suffixicon,
+            color: Colors.white,
+          ),
         ),
       ),
     );

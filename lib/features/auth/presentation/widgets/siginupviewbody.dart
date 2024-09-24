@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/features/auth/presentation/widgets/authbackground.dart';
-import 'package:grocery/features/auth/presentation/widgets/loginviewdetails.dart';
+import 'package:grocery/features/auth/presentation/widgets/signupviewdetails.dart';
 
-class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+class SignUpViewBody extends StatelessWidget {
+  const SignUpViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class LoginViewBody extends StatelessWidget {
         Container(
           color: Colors.black.withOpacity(0.7),
         ),
-        const LoginViewDetails(),
+        const SignUPViewDetails(),
       ],
     );
   }

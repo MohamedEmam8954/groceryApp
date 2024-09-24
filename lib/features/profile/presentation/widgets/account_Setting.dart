@@ -85,6 +85,7 @@ class _AccountSettingsState extends State<AccountSettings> {
           content: Form(
             key: _formKey,
             child: CustomTextFormField(
+              textInputType: TextInputType.streetAddress,
               maxlines: 5,
               hintext: AppStrings.youraddress,
               validator: (value) {

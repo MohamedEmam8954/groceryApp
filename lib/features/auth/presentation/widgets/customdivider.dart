@@ -13,7 +13,7 @@ class CustomDivider extends StatelessWidget {
             child: Divider(
           endIndent: 10,
           color: Colors.white,
-          thickness: 3,
+          thickness: 2,
         )),
         Text(
           AppStrings.or,
@@ -26,7 +26,7 @@ class CustomDivider extends StatelessWidget {
           child: Divider(
             indent: 10,
             color: Colors.white,
-            thickness: 3,
+            thickness: 2,
           ),
         ),
       ],

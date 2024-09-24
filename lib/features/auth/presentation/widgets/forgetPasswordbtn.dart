@@ -18,6 +18,7 @@ class ForgetPasswordBtn extends StatelessWidget {
             fontWeight: FontWeight.w600,
             decoration: TextDecoration.underline,
             decorationColor: Colors.blue,
+            fontStyle: FontStyle.italic,
           ),
         ),
       ),
