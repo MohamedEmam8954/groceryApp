@@ -1,19 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/function/navigationApp.dart';
-import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
+import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
 import 'package:grocery/core/widgets/customtextformfield.dart';
-import 'package:grocery/features/auth/presentation/widgets/forgetPasswordbtn.dart';
 
-class CustomLoginAuth extends StatefulWidget {
-  const CustomLoginAuth({super.key});
+class ForgetPasswordDetails extends StatelessWidget {
+  const ForgetPasswordDetails({super.key});
 
   @override
-  State<CustomLoginAuth> createState() => _CustomLoginAuthState();
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 60,
+          ),
+          Text(
+            AppStrings.forgetPassword,
+            style: AppStyles.style28.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          const SizedBox(
+            height: 22,
+          ),
+          const CustomForgetPasswordAuth(),
+        ],
+      ),
+    );
+  }
 }
 
-class _CustomLoginAuthState extends State<CustomLoginAuth> {
+class CustomForgetPasswordAuth extends StatefulWidget {
+  const CustomForgetPasswordAuth({super.key});
+
+  @override
+  State<CustomForgetPasswordAuth> createState() =>
+      _CustomForgetPasswordAuthState();
+}
+
+class _CustomForgetPasswordAuthState extends State<CustomForgetPasswordAuth> {
   var globalkey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isvisable = false;
@@ -44,41 +73,7 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
             },
           ),
           const SizedBox(
-            height: 20,
-          ),
-          CustomTextFormField(
-            focusNode: secondfocusNode,
-            textInputAction: TextInputAction.done,
-            textInputType: TextInputType.visiblePassword,
-            hintext: AppStrings.password,
-            obscureText: !isvisable ? true : false,
-            maxlines: 1,
-            isauth: true,
-            oncChanged: (value) {},
-            validator: (value) {
-              if (value!.isEmpty || value.length < 7) {
-                return AppStrings.enterValidPassword;
-              }
-              return null;
-            },
-            suffixicon: isvisable ? Icons.visibility : Icons.visibility_off,
-            onTapSuffixicon: () {
-              setState(() {
-                isvisable = !isvisable;
-              });
-            },
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          //! forget password
-          ForgetPasswordBtn(
-            ontap: () {
-              navTo(context, AppRouter.forgetpassword);
-            },
-          ),
-          const SizedBox(
-            height: 35,
+            height: 30,
           ),
           CustomBtn(
             radius: 2,

@@ -5,7 +5,8 @@ import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_t
 import 'package:iconly/iconly.dart';
 
 class BackWidget extends StatelessWidget {
-  const BackWidget({super.key});
+  const BackWidget({super.key, this.iconcolor = false});
+  final bool iconcolor;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class BackWidget extends StatelessWidget {
       },
       icon: Icon(
         IconlyLight.arrow_left_2,
-        color: color,
+        color: iconcolor ? Colors.white : color,
       ),
     );
   }

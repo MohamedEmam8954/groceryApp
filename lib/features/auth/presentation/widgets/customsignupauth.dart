@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/core/function/navigationApp.dart';
+import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
 import 'package:grocery/core/widgets/customtextformfield.dart';
@@ -114,7 +116,11 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             height: 20,
           ),
           //! forget password
-          ForgetPasswordBtn(ontap: () {}),
+          ForgetPasswordBtn(
+            ontap: () {
+              navTo(context, AppRouter.forgetpassword);
+            },
+          ),
           const SizedBox(
             height: 35,
           ),

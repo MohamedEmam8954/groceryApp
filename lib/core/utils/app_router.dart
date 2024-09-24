@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:grocery/features/auth/presentation/views/forgetPasswordview.dart';
 import 'package:grocery/features/auth/presentation/views/loginview.dart';
 import 'package:grocery/features/auth/presentation/views/signupview.dart';
 import 'package:grocery/features/home/presentation/views/browseAllProduct.dart';
@@ -19,6 +20,7 @@ class AppRouter {
   static String orderView = "/orderview";
   static String historyView = "/historyview";
   static String signUpView = "/signUpView";
+  static String forgetpassword = "/forgetpassword";
 
   static GoRouter goRoute = GoRouter(
     routes: [
@@ -59,6 +61,10 @@ class AppRouter {
       GoRoute(
         path: signUpView,
         builder: (context, state) => const SignUpView(),
+      ),
+      GoRoute(
+        path: forgetpassword,
+        builder: (context, state) => const ForgetPasswordView(),
       ),
     ],
   );
