@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/core/function/navigationApp.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
+import 'package:grocery/features/auth/presentation/widgets/alreadyauser.dart';
 import 'package:grocery/features/auth/presentation/widgets/customsignupauth.dart';
 
 class SignUPViewDetails extends StatelessWidget {
@@ -36,6 +38,9 @@ class SignUPViewDetails extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
+            AlreadyaUser(ontap: () {
+              popAppRouter(context);
+            })
           ],
         ),
       ),

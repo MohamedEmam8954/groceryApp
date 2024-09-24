@@ -74,8 +74,8 @@ class AppStrings {
   static const String signUpToContinue = "Sign up to continue";
   static const String fullname = "Full name";
   static const String shippingAddress = "Shipping address";
-  static const String alreadyauser = "Already a User";
-  static const String enterValidname = "Please enter a vaild name";
+  static const String alreadyauser = "Already a user? ";
+  static const String thisfieldismissing = "this field is missing";
   static const String enterValidshippingaddress =
       "Please enter a vaild Shipping address";
 }

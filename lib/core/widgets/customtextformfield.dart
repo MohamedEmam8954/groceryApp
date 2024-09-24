@@ -17,7 +17,8 @@ class CustomTextFormField extends StatelessWidget {
       this.obscureText = false,
       this.oneditingcomplete,
       required this.textInputType,
-      this.textInputAction});
+      this.textInputAction,
+      this.focusNode});
 
   final void Function(String)? oncChanged;
   final String? Function(String?)? validator;
@@ -30,6 +31,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool obscureText;
   final TextInputType textInputType;
   final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,7 @@ class CustomTextFormField extends StatelessWidget {
             ?.withOpacity(0.7) // Use a lighter color for dark theme
         : theme.textTheme.bodySmall?.color?.withOpacity(0.7);
     return TextFormField(
+      focusNode: focusNode,
       keyboardType: textInputType,
       textInputAction: textInputAction,
       controller: controller,

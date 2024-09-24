@@ -15,8 +15,8 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
   var globalkey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isvisable = false;
-  var focusNode = FocusNode();
-
+  var fristfocusNode = FocusNode();
+  var secondfocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -25,11 +25,12 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
       child: Column(
         children: [
           CustomTextFormField(
+            focusNode: fristfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
             hintext: AppStrings.email,
             oneditingcomplete: () =>
-                FocusScope.of(context).requestFocus(focusNode),
+                FocusScope.of(context).requestFocus(secondfocusNode),
             maxlines: 1,
             isauth: true,
             oncChanged: (value) {},
@@ -43,14 +44,12 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
           const SizedBox(
             height: 20,
           ),
-
           CustomTextFormField(
+            focusNode: secondfocusNode,
             textInputAction: TextInputAction.done,
             textInputType: TextInputType.visiblePassword,
             hintext: AppStrings.password,
             obscureText: !isvisable ? true : false,
-            oneditingcomplete: () =>
-                FocusScope.of(context).requestFocus(focusNode),
             maxlines: 1,
             isauth: true,
             oncChanged: (value) {},

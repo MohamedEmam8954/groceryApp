@@ -15,7 +15,10 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
   var globalkey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   bool isvisable = false;
-  var focusNode = FocusNode();
+  var fristfocusNode = FocusNode();
+  var secondfocusNode = FocusNode();
+  var thirdfocusNode = FocusNode();
+  var forthfocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +28,18 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
       child: Column(
         children: [
           CustomTextFormField(
+            focusNode: fristfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.name,
             hintext: AppStrings.fullname,
             oneditingcomplete: () =>
-                FocusScope.of(context).requestFocus(focusNode),
+                FocusScope.of(context).requestFocus(secondfocusNode),
             maxlines: 1,
             isauth: true,
             oncChanged: (value) {},
             validator: (value) {
               if (value!.isEmpty) {
-                return AppStrings.enterValidname;
+                return AppStrings.thisfieldismissing;
               }
               return null;
             },
@@ -44,11 +48,12 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             height: 20,
           ),
           CustomTextFormField(
+            focusNode: secondfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
             hintext: AppStrings.email,
             oneditingcomplete: () =>
-                FocusScope.of(context).requestFocus(focusNode),
+                FocusScope.of(context).requestFocus(thirdfocusNode),
             maxlines: 1,
             isauth: true,
             oncChanged: (value) {},
@@ -64,12 +69,13 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
           ),
 
           CustomTextFormField(
+            focusNode: thirdfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.visiblePassword,
             hintext: AppStrings.password,
             obscureText: !isvisable ? true : false,
             oneditingcomplete: () =>
-                FocusScope.of(context).requestFocus(focusNode),
+                FocusScope.of(context).requestFocus(forthfocusNode),
             maxlines: 1,
             isauth: true,
             oncChanged: (value) {},
@@ -90,11 +96,10 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             height: 10,
           ),
           CustomTextFormField(
+            focusNode: forthfocusNode,
             textInputAction: TextInputAction.done,
             textInputType: TextInputType.streetAddress,
             hintext: AppStrings.shippingAddress,
-            oneditingcomplete: () =>
-                FocusScope.of(context).requestFocus(focusNode),
             maxlines: 1,
             isauth: true,
             oncChanged: (value) {},
