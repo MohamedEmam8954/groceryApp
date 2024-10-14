@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/utils/appAssets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
+import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/home/presentation/widgets/pricewidgets.dart';
 import 'package:grocery/features/home/presentation/widgets/shoppingandFavIcon.dart';
+import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
 
 class OnSaleWidget extends StatelessWidget {
-  const OnSaleWidget({super.key});
+  const OnSaleWidget({super.key, required this.productModel});
+  final ProductModel productModel;
 
-  @override
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var cart = context.read<CartCubit>();
 
-    return Material(
-      color: Theme.of(context).cardColor.withOpacity(0.9),
+    return InkWell(
       borderRadius: BorderRadius.circular(12),
-      child: InkWell(
+      onTap: () {
+        // navTo(context, AppRouter.productDetails, extra: productModel);
+        GoRouter.of(context)
+            .push(AppRouter.productDetails, extra: productModel);
+      },
+      child: Material(
+        color: Theme.of(context).cardColor.withOpacity(0.9),
         borderRadius: BorderRadius.circular(12),
-        onTap: () {},
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -30,13 +40,15 @@ class OnSaleWidget extends StatelessWidget {
                   Image.asset(
                     width: size.width * 0.23,
                     height: size.width * 0.23,
-                    Assets.assetsImagesCatNuts,
+                    productModel.imgUrl,
                     fit: BoxFit.fill,
                   ),
                   Column(
                     children: <Widget>[
                       Text(
-                        "1 ${AppStrings.kg}",
+                        productModel.isPiece
+                            ? AppStrings.piece
+                            : "1 ${AppStrings.kg}",
                         style: AppStyles.style22
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
@@ -44,23 +56,30 @@ class OnSaleWidget extends StatelessWidget {
                         height: 6,
                       ),
                       ShoppingAndFavouriteIcon(
+                        id: productModel.id,
                         onFavouriteTap: () {},
-                        onShoppingTap: () {},
+                        onShoppingTap: () {
+                          cart.addProductToCart(
+                            productmodel: productModel,
+                            productId: productModel.id,
+                            quantity: 1,
+                          );
+                        },
                       ),
                     ],
                   ),
                 ],
               ),
-              const FittedBox(
+              FittedBox(
                 child: PriceWidget(
-                  onsale: true,
-                  price: 3.66,
-                  onsaleprice: 2.5,
-                  textPrice: "1",
+                  onsale: productModel.isOnsale,
+                  price: productModel.price,
+                  onsaleprice: productModel.salePrice,
+                  textPrice: '1',
                 ),
               ),
               Text(
-                "Product",
+                productModel.title,
                 style: AppStyles.style16.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

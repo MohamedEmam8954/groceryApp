@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
-import 'package:grocery/core/widgets/customBtn.dart';
+import 'package:grocery/features/home/data/model/product_model.dart';
+import 'package:grocery/features/home/presentation/widgets/incartBtn.dart';
 import 'price_per_widget.dart';
 
 class TotalPriceInCart extends StatelessWidget {
-  const TotalPriceInCart({super.key, required this.price, required this.ontap});
-  final String price;
+  const TotalPriceInCart(
+      {super.key,
+      required this.price,
+      required this.ontap,
+      required this.numberOfKg,
+      required this.productModel,
+      required this.controller});
+  final double price;
   final VoidCallback ontap;
+  final int numberOfKg;
+  final ProductModel productModel;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(8),
+      width: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(15),
+        color: Colors.grey.withOpacity(0.07),
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(16), topRight: Radius.circular(16)),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Column(
           children: [
             Row(
@@ -34,15 +45,15 @@ class TotalPriceInCart extends StatelessWidget {
                     ),
                     PricePerKgText(
                       price: price,
-                      kg: AppStrings.oneKg,
+                      kg: "$numberOfKg ${productModel.isPiece ? AppStrings.piece : AppStrings.kg}",
                     ),
                   ],
                 ),
-                CustomBtn(
-                  radius: 10,
-                  ontap: ontap,
-                  title: AppStrings.addToCart,
-                  padding: 10,
+                IncartBtn(
+                  productModel: productModel,
+                  controller: controller,
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ],
             )

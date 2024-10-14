@@ -34,11 +34,7 @@ abstract class GlobalMethod {
               ),
             ),
             TextButton(
-              onPressed: () {
-                //!
-                log("Sign Out");
-                Navigator.pop(context);
-              },
+              onPressed: onTapOK,
               child: Text(
                 AppStrings.ok,
                 style: AppStyles.style17.copyWith(color: Colors.red),

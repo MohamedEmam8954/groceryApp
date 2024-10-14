@@ -38,7 +38,7 @@ class AppStrings {
   static const String orderNow = "Order Now";
   static const String total = "Total: ";
   static const String freeDelivery = "Free delivery";
-  static const String oneKg = "1Kg";
+
   static const String addToCart = "Add to cart";
   static const String emptyCart = "Empty Your Cart?";
   static const String emptyWishlist = "Empty Your Wishlist?";
@@ -78,4 +78,6 @@ class AppStrings {
   static const String thisfieldismissing = "this field is missing";
   static const String enterValidshippingaddress =
       "Please enter a vaild Shipping address";
+  static const String piece = "Piece";
+  static const String noProductNow = "No Product Belong to this category ";
 }

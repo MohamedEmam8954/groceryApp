@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/appAssets.dart';
-import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 
-class NoProductSale extends StatelessWidget {
-  const NoProductSale({super.key});
+class NoProductYet extends StatelessWidget {
+  const NoProductYet({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class NoProductSale extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              AppStrings.noProductsOnSale,
+              title,
               style: AppStyles.style30,
               textAlign: TextAlign.center,
             ),

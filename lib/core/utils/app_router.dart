@@ -1,19 +1,21 @@
 import 'package:go_router/go_router.dart';
 import 'package:grocery/features/auth/presentation/views/forgetPasswordview.dart';
-import 'package:grocery/features/auth/presentation/views/loginview.dart';
 import 'package:grocery/features/auth/presentation/views/signupview.dart';
+import 'package:grocery/features/categories/data/model/categoryViewItemmodel.dart';
+import 'package:grocery/features/categories/presentation/views/all_product_category.dart';
+import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/home/presentation/views/browseAllProduct.dart';
-import 'package:grocery/features/home/presentation/views/navgationView.dart';
-import 'package:grocery/features/home/presentation/views/onsaleView.dart';
+import 'package:grocery/features/home/presentation/views/navgation_view.dart';
+import 'package:grocery/features/home/presentation/views/onsale_view.dart';
 import 'package:grocery/features/home/presentation/views/productdetailsview.dart';
 import 'package:grocery/features/profile/presentation/views/historyView.dart';
 import 'package:grocery/features/profile/presentation/views/orderview.dart';
 import 'package:grocery/features/profile/presentation/views/wishlistview.dart';
 
 class AppRouter {
-  static String loginView = "/";
+  // static String loginView = "/";
   static String onsaleView = "/OnSale";
-  static String navigation = "/navgation";
+  static String navigation = "/";
   static String browseAllProduct = "/browseallproduct";
   static String productDetails = "/Productdetails";
   static String wishListView = "/wishListView";
@@ -21,13 +23,14 @@ class AppRouter {
   static String historyView = "/historyview";
   static String signUpView = "/signUpView";
   static String forgetpassword = "/forgetpassword";
+  static String allProductcategories = "/allProductcategories";
 
   static GoRouter goRoute = GoRouter(
     routes: [
-      GoRoute(
-        path: loginView,
-        builder: (context, state) => const LoginView(),
-      ),
+      // GoRoute(
+      //   path: loginView,
+      //   builder: (context, state) => const LoginView(),
+      // ),
       GoRoute(
         path: onsaleView,
         builder: (context, state) => const OnSaleView(
@@ -44,7 +47,9 @@ class AppRouter {
       ),
       GoRoute(
         path: productDetails,
-        builder: (context, state) => const ProductDetailsView(),
+        builder: (context, state) => ProductDetailsView(
+          productModel: state.extra as ProductModel,
+        ),
       ),
       GoRoute(
         path: wishListView,
@@ -65,6 +70,12 @@ class AppRouter {
       GoRoute(
         path: forgetpassword,
         builder: (context, state) => const ForgetPasswordView(),
+      ),
+      GoRoute(
+        path: allProductcategories,
+        builder: (context, state) => AllProductCategory(
+          categoryViewItemModel: state.extra as CategoryViewItemModel,
+        ),
       ),
     ],
   );

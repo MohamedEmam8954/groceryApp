@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/function/navigationApp.dart';
-import 'package:grocery/core/utils/app_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/features/home/data/model/product_model.dart';
+import 'package:grocery/features/home/presentation/manager/allProductdetailscubit/allproduct_details_model.dart';
 import 'package:grocery/features/home/presentation/widgets/groceryproductwidget.dart';
 
 class ProductGridView extends StatelessWidget {
@@ -8,6 +9,8 @@ class ProductGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<ProductModel> product =
+        context.read<AllProductDetailsCubit>().productModel;
     return GridView.count(
       shrinkWrap: true,
       crossAxisCount: 2,
@@ -17,14 +20,10 @@ class ProductGridView extends StatelessWidget {
       childAspectRatio: 35 / 50,
       physics: const NeverScrollableScrollPhysics(),
       children: List.generate(
-        4,
+        product.length < 4 ? product.length : 4,
         (index) {
-          return InkWell(
-            borderRadius: BorderRadius.circular(12),
-            onTap: () {
-              navTo(context, AppRouter.productDetails);
-            },
-            child: const GroceryProductHome(),
+          return GroceryProductHome(
+            productModel: product[index],
           );
         },
       ),

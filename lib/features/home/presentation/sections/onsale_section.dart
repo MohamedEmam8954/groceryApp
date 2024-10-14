@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/function/navigationApp.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/utils/app_router.dart';
@@ -15,7 +15,8 @@ class OnSaleSection extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-            navTo(context, AppRouter.onsaleView);
+            // navTo(context, AppRouter.onsaleView,extra:productmodel );
+            GoRouter.of(context).push(AppRouter.onsaleView);
           },
           child: Text(
             AppStrings.viewAll,

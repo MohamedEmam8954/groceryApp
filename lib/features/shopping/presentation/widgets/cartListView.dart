@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/features/shopping/presentation/widgets/cartBodyItem.dart';
+import 'package:grocery/features/shopping/data/models/cart_model.dart';
+import 'package:grocery/features/shopping/presentation/widgets/cart_body_item.dart';
 
 class CartListView extends StatelessWidget {
-  const CartListView({super.key});
+  const CartListView({super.key, required this.cartList});
+  final List<CartModel> cartList;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: cartList.length,
       padding: const EdgeInsets.all(6),
       itemBuilder: (context, index) {
-        return const CartBodyItem();
+        return CartBodyItem(
+          cartModel: cartList[index],
+        );
       },
     );
   }
