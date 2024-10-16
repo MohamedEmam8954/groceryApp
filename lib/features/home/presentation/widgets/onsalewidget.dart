@@ -8,6 +8,7 @@ import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/home/presentation/widgets/pricewidgets.dart';
 import 'package:grocery/features/home/presentation/widgets/shoppingandFavIcon.dart';
+import 'package:grocery/features/profile/presentation/manager/cubit/wishlistcubit/wish_list_cubit.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
 
 class OnSaleWidget extends StatelessWidget {
@@ -56,15 +57,14 @@ class OnSaleWidget extends StatelessWidget {
                         height: 6,
                       ),
                       ShoppingAndFavouriteIcon(
-                        id: productModel.id,
-                        onFavouriteTap: () {},
-                        onShoppingTap: () {
+                        onBagTap: () {
                           cart.addProductToCart(
                             productmodel: productModel,
                             productId: productModel.id,
                             quantity: 1,
                           );
                         },
+                        id: productModel.id,
                       ),
                     ],
                   ),

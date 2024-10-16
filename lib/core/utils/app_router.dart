@@ -4,11 +4,11 @@ import 'package:grocery/features/auth/presentation/views/signupview.dart';
 import 'package:grocery/features/categories/data/model/categoryViewItemmodel.dart';
 import 'package:grocery/features/categories/presentation/views/all_product_category.dart';
 import 'package:grocery/features/home/data/model/product_model.dart';
-import 'package:grocery/features/home/presentation/views/browseAllProduct.dart';
+import 'package:grocery/features/home/presentation/views/browse_all_product.dart';
 import 'package:grocery/features/home/presentation/views/navgation_view.dart';
 import 'package:grocery/features/home/presentation/views/onsale_view.dart';
 import 'package:grocery/features/home/presentation/views/productdetailsview.dart';
-import 'package:grocery/features/profile/presentation/views/historyView.dart';
+import 'package:grocery/features/profile/presentation/views/history_view.dart';
 import 'package:grocery/features/profile/presentation/views/orderview.dart';
 import 'package:grocery/features/profile/presentation/views/wishlistview.dart';
 

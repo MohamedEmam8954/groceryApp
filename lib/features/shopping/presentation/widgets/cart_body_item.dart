@@ -182,7 +182,9 @@ class _CartBodyItemState extends State<CartBodyItem> {
                             const SizedBox(
                               height: 10,
                             ),
-                            IconFav(onFavTap: () {}),
+                            IconFav(
+                              productId: widget.cartModel.productId,
+                            ),
                             Text(
                               "\$ 33.9",
                               style: AppStyles.style20,

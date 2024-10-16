@@ -29,11 +29,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   List<Widget> _icons() {
     return [
-      IconBag(onBagTap: () {}),
+      //! add icon baaaaaaaaaaaaaaaaag
+      // IconBag(onBagTap: () {}),
+      Icon(Icons.favorite),
       const SizedBox(
         width: 10,
       ),
-      IconFav(onFavTap: () {})
+      //! add Icon Favvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+      // IconFav(),
     ];
   }
 

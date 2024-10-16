@@ -4,7 +4,7 @@ import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/features/categories/presentation/views/categoriesView.dart';
 import 'package:grocery/features/home/presentation/views/home_view.dart';
 import 'package:grocery/features/shopping/presentation/views/cart_view.dart';
-import 'package:grocery/features/profile/presentation/views/profileView.dart';
+import 'package:grocery/features/profile/presentation/views/profile_view.dart';
 import 'package:iconly/iconly.dart';
 import 'package:badges/badges.dart' as badges;
 

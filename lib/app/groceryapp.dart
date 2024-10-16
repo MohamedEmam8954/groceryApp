@@ -7,6 +7,8 @@ import 'package:grocery/core/utils/dependencyInjection.dart';
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/features/home/presentation/manager/allProductdetailscubit/allproduct_details_model.dart';
 import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/features/profile/presentation/manager/cubit/viewedProductcubit/viewed_product_cubit.dart';
+import 'package:grocery/features/profile/presentation/manager/cubit/wishlistcubit/wish_list_cubit.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
 
 class GroceryApp extends StatefulWidget {
@@ -34,6 +36,12 @@ class _GroceryAppState extends State<GroceryApp> {
         ),
         BlocProvider(
           create: (context) => AllProductDetailsCubit(),
+        ),
+        BlocProvider(
+          create: (context) => WishListCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ViewedProductCubit(),
         ),
       ],
       child: BlocBuilder<DarkThemeCubit, DarkThemeState>(

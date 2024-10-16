@@ -4,7 +4,6 @@ import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/widgets/customAppBar.dart';
 import 'package:grocery/features/home/presentation/manager/allProductdetailscubit/allproduct_details_model.dart';
 import 'package:grocery/features/home/presentation/widgets/browseallProductBody.dart';
-import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
 
 class BrowseAllProductView extends StatelessWidget {
   const BrowseAllProductView({super.key});

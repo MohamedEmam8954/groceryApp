@@ -78,7 +78,10 @@ class _ShowProductDataState extends State<ShowProductData> {
                       style: AppStyles.style22
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
-                    IconFav(onFavTap: widget.onFavTap)
+                    // IconFav(onFavTap: widget.onFavTap)
+                    IconFav(
+                      productId: widget.productModel.id,
+                    ),
                   ],
                 ),
                 const SizedBox(

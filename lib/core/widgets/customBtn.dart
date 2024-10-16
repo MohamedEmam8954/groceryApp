@@ -15,7 +15,7 @@ class CustomBtn extends StatelessWidget {
       this.bordercolor,
       required this.radius,
       this.isBorder = false});
-  final VoidCallback ontap;
+  final VoidCallback? ontap;
   final String? title;
   final IconData? icon;
   final double? width, hight, padding;

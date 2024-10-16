@@ -25,7 +25,7 @@ class _BrowseAllProductBodyState extends State<BrowseAllProductBody> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: ConstrainedBox(
               constraints: const BoxConstraints(
                 maxHeight: 100.0,
