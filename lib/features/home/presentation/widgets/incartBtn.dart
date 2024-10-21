@@ -24,7 +24,7 @@ class IncartBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     var cart = context.read<CartCubit>();
 
-    return BlocBuilder<CartCubit, Cartcubitstate>(
+    return BlocBuilder<CartCubit, Cartstate>(
       builder: (context, state) {
         bool isInCart =
             context.read<CartCubit>().cartItem.containsKey(productModel.id);

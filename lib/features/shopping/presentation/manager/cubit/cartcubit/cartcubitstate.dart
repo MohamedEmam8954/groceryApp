@@ -1,13 +1,13 @@
-class Cartcubitstate {}
+class Cartstate {}
 
-class CartInitialState extends Cartcubitstate {}
+class CartInitialState extends Cartstate {}
 
-class ProductAddedToCartSucessfully extends Cartcubitstate {}
+class ProductAddedToCartSucessfully extends Cartstate {}
 
-class IncreaseQuantityByOne extends Cartcubitstate {}
+class IncreaseQuantityByOne extends Cartstate {}
 
-class DeacreseQuantityByOne extends Cartcubitstate {}
+class DeacreseQuantityByOne extends Cartstate {}
 
-class RemoveCartItem extends Cartcubitstate {}
+class RemoveCartItem extends Cartstate {}
 
-class DeleteAllCartItem extends Cartcubitstate {}
+class DeleteAllCartItem extends Cartstate {}

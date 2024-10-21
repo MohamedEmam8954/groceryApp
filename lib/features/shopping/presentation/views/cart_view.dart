@@ -15,7 +15,7 @@ class Cartview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, Cartcubitstate>(
+    return BlocBuilder<CartCubit, Cartstate>(
       builder: (context, state) {
         var cartCubit = context.read<CartCubit>();
         var cart = cartCubit.cartItem;

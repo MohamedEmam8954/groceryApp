@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/utils/app_strings.dart';
-import 'package:grocery/core/utils/app_styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/features/categories/presentation/views/categoriesView.dart';
 import 'package:grocery/features/home/presentation/views/home_view.dart';
-import 'package:grocery/features/shopping/presentation/views/cart_view.dart';
 import 'package:grocery/features/profile/presentation/views/profile_view.dart';
+import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
+import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cartcubitstate.dart';
+import 'package:grocery/features/shopping/presentation/views/cart_view.dart';
 import 'package:iconly/iconly.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -21,9 +22,6 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(views[index]["title"]),
-      // ),
       body: views[index]["views"],
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
@@ -32,90 +30,55 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
         currentIndex: index,
         onTap: (value) => setState(() => index = value),
         items: [
-          BottomNavigationBarItem(
-            icon: index == 0 ? Icon(iconlyBold[0]) : Icon(iconlyLight[0]),
-            label: AppStrings.home,
-          ),
-          BottomNavigationBarItem(
-            icon: index == 1 ? Icon(iconlyBold[1]) : Icon(iconlyLight[1]),
-            label: AppStrings.category,
-          ),
-          BottomNavigationBarItem(
-            icon: index == 2
-                ? badges.Badge(
-                    position: badges.BadgePosition.topEnd(top: -10, end: -12),
-                    badgeAnimation: const badges.BadgeAnimation.rotation(
-                      animationDuration: Duration(seconds: 1),
-                      colorChangeAnimationDuration: Duration(seconds: 1),
-                      loopAnimation: false,
-                      curve: Curves.fastOutSlowIn,
-                      colorChangeAnimationCurve: Curves.easeInCubic,
-                    ),
-                    showBadge: true,
-                    badgeContent: FittedBox(
-                      child: Text(
-                        "1",
-                        style: AppStyles.style15.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    badgeStyle:
-                        const badges.BadgeStyle(badgeColor: Colors.blue),
-                    onTap: () {},
-                    child: Icon(iconlyBold[2]),
-                  )
-                : badges.Badge(
-                    position: badges.BadgePosition.topEnd(top: -10, end: -12),
-                    showBadge: true,
-                    badgeAnimation: const badges.BadgeAnimation.rotation(
-                      animationDuration: Duration(seconds: 1),
-                      colorChangeAnimationDuration: Duration(seconds: 1),
-                      loopAnimation: false,
-                      curve: Curves.fastOutSlowIn,
-                      colorChangeAnimationCurve: Curves.easeInCubic,
-                    ),
-                    badgeContent: FittedBox(
-                      child: Text(
-                        "5",
-                        style: AppStyles.style15.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    badgeStyle:
-                        const badges.BadgeStyle(badgeColor: Colors.blue),
-                    onTap: () {},
-                    child: Icon(iconlyLight[2]),
-                  ),
-            label: AppStrings.cart,
-          ),
-          BottomNavigationBarItem(
-            icon: index == 3 ? Icon(iconlyBold[3]) : Icon(iconlyLight[3]),
-            label: AppStrings.profile,
-          ),
+          _buildNavItem(0, iconlyBold[0], iconlyLight[0], 'Home'),
+          _buildNavItem(1, iconlyBold[1], iconlyLight[1], 'Category'),
+          _buildCartNavItem(),
+          _buildNavItem(3, iconlyBold[3], iconlyLight[3], 'Profile'),
         ],
       ),
     );
   }
 
+  BottomNavigationBarItem _buildNavItem(
+    int itemIndex,
+    IconData activeIcon,
+    IconData inactiveIcon,
+    String label,
+  ) {
+    return BottomNavigationBarItem(
+      icon: Icon(index == itemIndex ? activeIcon : inactiveIcon),
+      label: label,
+    );
+  }
+
+  BottomNavigationBarItem _buildCartNavItem() {
+    return BottomNavigationBarItem(
+      icon: BlocBuilder<CartCubit, Cartstate>(
+        builder: (context, state) {
+          final cartItemCount = context.watch<CartCubit>().cartItem.length;
+          return badges.Badge(
+            position: badges.BadgePosition.topEnd(top: -10, end: -12),
+            showBadge: cartItemCount > 0,
+            badgeContent: FittedBox(
+              child: Text(
+                cartItemCount.toString(),
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            badgeStyle: const badges.BadgeStyle(badgeColor: Colors.blue),
+            child: Icon(index == 2 ? iconlyBold[2] : iconlyLight[2]),
+          );
+        },
+      ),
+      label: 'Cart',
+    );
+  }
+
   final List<Map<String, dynamic>> views = const [
-    {
-      "views": HomeView(),
-      "title": AppStrings.home,
-    },
-    {
-      "views": CategoriesView(),
-      "title": AppStrings.category,
-    },
-    {
-      "views": Cartview(),
-      "title": AppStrings.cart,
-    },
-    {
-      "views": Profileview(),
-      "title": AppStrings.profile,
-    }
+    {"views": HomeView(), "title": 'Home'},
+    {"views": CategoriesView(), "title": 'Category'},
+    {"views": Cartview(), "title": 'Cart'},
+    {"views": Profileview(), "title": 'Profile'},
   ];
 
   final List<dynamic> iconlyLight = const [

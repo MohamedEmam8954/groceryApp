@@ -3,7 +3,7 @@ import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/shopping/data/models/cart_model.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cartcubitstate.dart';
 
-class CartCubit extends Cubit<Cartcubitstate> {
+class CartCubit extends Cubit<Cartstate> {
   CartCubit() : super(CartInitialState());
 
   final Map<String, CartModel> _cartItem = {};

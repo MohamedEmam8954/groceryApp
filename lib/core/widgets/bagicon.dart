@@ -10,7 +10,7 @@ class IconBag extends StatelessWidget {
   final String id;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, Cartcubitstate>(
+    return BlocBuilder<CartCubit, Cartstate>(
       builder: (context, state) {
         bool isInCart = context.read<CartCubit>().cartItem.containsKey(id);
         return GestureDetector(

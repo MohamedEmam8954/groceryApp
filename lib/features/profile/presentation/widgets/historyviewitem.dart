@@ -60,7 +60,7 @@ class HistoryViewItem extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
-                child: BlocBuilder<CartCubit, Cartcubitstate>(
+                child: BlocBuilder<CartCubit, Cartstate>(
                   builder: (context, state) {
                     var cart = context.read<CartCubit>();
                     var isinCart = cart.cartItem.containsKey(productModel.id);
