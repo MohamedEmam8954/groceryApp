@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grocery/features/categories/presentation/views/all_product_category.dart';
 import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/home/presentation/widgets/product_details_body.dart';
 import 'package:grocery/features/profile/presentation/manager/cubit/viewedProductcubit/viewed_product_cubit.dart';

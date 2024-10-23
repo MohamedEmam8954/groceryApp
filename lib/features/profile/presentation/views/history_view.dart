@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/core/function/navigationApp.dart';
-import 'package:grocery/core/function/warningdialog.dart';
+import 'package:grocery/core/utils/warningdialog.dart';
 import 'package:grocery/core/utils/appAssets.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/views/emptyViewBody.dart';

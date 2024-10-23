@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/core/function/navigationApp.dart';
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
 import 'package:grocery/core/widgets/customtextformfield.dart';
+import 'package:grocery/features/auth/presentation/manager/cubit/auth_cubit_cubit.dart';
 import 'package:grocery/features/auth/presentation/widgets/forgetPasswordbtn.dart';
 
 class CustomSignUPAuth extends StatefulWidget {
@@ -21,9 +25,12 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
   var secondfocusNode = FocusNode();
   var thirdfocusNode = FocusNode();
   var forthfocusNode = FocusNode();
+  TextEditingController emaileditingcontroller = TextEditingController();
+  TextEditingController passwordeditingcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var authCubit = context.read<AuthCubit>();
     return Form(
       key: globalkey,
       autovalidateMode: autovalidateMode,
@@ -50,6 +57,7 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             height: 20,
           ),
           CustomTextFormField(
+            controller: emaileditingcontroller,
             focusNode: secondfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
@@ -71,6 +79,7 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
           ),
 
           CustomTextFormField(
+            controller: passwordeditingcontroller,
             focusNode: thirdfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.visiblePassword,
@@ -130,6 +139,11 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             ontap: () {
               FocusScope.of(context).unfocus();
               if (globalkey.currentState!.validate()) {
+                log(emaileditingcontroller.text);
+                log(passwordeditingcontroller.text);
+                authCubit.signUp(
+                    email: emaileditingcontroller.text.toLowerCase().trim(),
+                    password: passwordeditingcontroller.text.trim());
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});

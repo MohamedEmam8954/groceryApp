@@ -80,4 +80,6 @@ class AppStrings {
       "Please enter a vaild Shipping address";
   static const String piece = "Piece";
   static const String noProductNow = "No Product Belong to this category ";
+  static const String unKnownError = 'Unknown error occurred.';
+  static const String anErrorOccurred = 'an error occurred';
 }

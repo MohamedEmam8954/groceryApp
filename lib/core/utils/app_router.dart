@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:grocery/features/auth/presentation/views/forgetPasswordview.dart';
+import 'package:grocery/features/auth/presentation/views/loginview.dart';
 import 'package:grocery/features/auth/presentation/views/signupview.dart';
 import 'package:grocery/features/categories/data/model/categoryViewItemmodel.dart';
 import 'package:grocery/features/categories/presentation/views/all_product_category.dart';
@@ -13,24 +14,24 @@ import 'package:grocery/features/profile/presentation/views/orderview.dart';
 import 'package:grocery/features/profile/presentation/views/wishlistview.dart';
 
 class AppRouter {
-  // static String loginView = "/";
+  static String loginView = "/";
   static String onsaleView = "/OnSale";
-  static String navigation = "/";
+  static String navigation = "/navigation";
   static String browseAllProduct = "/browseallproduct";
   static String productDetails = "/Productdetails";
   static String wishListView = "/wishListView";
   static String orderView = "/orderview";
   static String historyView = "/historyview";
-  static String signUpView = "/signUpView";
+  static String signUpView = "/Signin";
   static String forgetpassword = "/forgetpassword";
   static String allProductcategories = "/allProductcategories";
 
   static GoRouter goRoute = GoRouter(
     routes: [
-      // GoRoute(
-      //   path: loginView,
-      //   builder: (context, state) => const LoginView(),
-      // ),
+      GoRoute(
+        path: loginView,
+        builder: (context, state) => const LoginView(),
+      ),
       GoRoute(
         path: onsaleView,
         builder: (context, state) => const OnSaleView(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/backwidget.dart';
-import 'package:grocery/core/widgets/bagicon.dart';
-import 'package:grocery/core/widgets/iconFav.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
