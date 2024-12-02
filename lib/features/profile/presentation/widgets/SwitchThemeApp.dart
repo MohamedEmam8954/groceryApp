@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/constant/constant.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
-import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/app/darkThemecubit/dark_theme_cubit.dart';
 
 class SwitchThemeApp extends StatefulWidget {
   const SwitchThemeApp({super.key});
@@ -42,7 +42,7 @@ class _SwitchThemeAppState extends State<SwitchThemeApp> {
                 value: themeState.myCacheHelper
                     .getData(key: AppConstant.themeStatus),
                 onChanged: (bool value) {
-                  themeState.setDarkTheme = value;
+                  BlocProvider.of<DarkThemeCubit>(context).toggleTheme();
                   setState(() {});
                 },
                 activeColor: Colors.white,

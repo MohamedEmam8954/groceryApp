@@ -12,6 +12,7 @@ class AppStrings {
   static const String viewed = "Viewed";
   static const String forgetPassword = "Forget Password";
   static const String logout = "Logout";
+  static const String login = "Login";
   static const String update = "Update";
   static const String youraddress = "Your Address";
   static const String adressIsRequired = "Your address is required";
@@ -82,4 +83,12 @@ class AppStrings {
   static const String noProductNow = "No Product Belong to this category ";
   static const String unKnownError = 'Unknown error occurred.';
   static const String anErrorOccurred = 'an error occurred';
+  static const String noUserFound = 'No user found,Login frist';
+  static const String sendEmailVerification =
+      "We've sent a verification email to your inbox. Please check your email!.";
+  static const String name = 'userName';
+  static const String userEmail = 'userEmail';
+  static const String loading = 'loading...';
+  static const String subTitles = 'subTitles';
+  static const String yourOrderIsEmpty = "You Didn't place Any Order Yet";
 }

@@ -3,11 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/utils/app_router.dart';
+import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/home/presentation/widgets/productGridView.dart';
 
 class OurProductSection extends StatelessWidget {
-  const OurProductSection({super.key});
-
+  const OurProductSection({super.key, required this.productModel});
+  final List<ProductModel> productModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +25,8 @@ class OurProductSection extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   // navTo(context, AppRouter.browseAllProduct);
-                  GoRouter.of(context).push(AppRouter.browseAllProduct);
+                  GoRouter.of(context)
+                      .push(AppRouter.browseAllProduct, extra: productModel);
                 },
                 child: Text(
                   AppStrings.browseAll,
@@ -36,7 +38,9 @@ class OurProductSection extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          const ProductGridView(),
+          ProductGridView(
+            productModel: productModel,
+          ),
         ],
       ),
     );

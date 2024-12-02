@@ -1,12 +1,16 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grocery/core/utils/app_router.dart';
+import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
+import 'package:grocery/core/utils/warningdialog.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
 import 'package:grocery/features/home/data/model/product_model.dart';
-import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/app/darkThemecubit/dark_theme_cubit.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cartcubitstate.dart';
 
@@ -18,7 +22,7 @@ class HistoryViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var color = context.read<DarkThemeCubit>().color();
+    var color = context.read<DarkThemeCubit>().currentTextColor;
 
     return InkWell(
       onTap: () {
@@ -33,11 +37,9 @@ class HistoryViewItem extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 width: size.width * 0.2,
                 height: size.width * 0.23,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(productModel.imgUrl),
-                    fit: BoxFit.fill,
-                  ),
+                child: FancyShimmerImage(
+                  imageUrl: productModel.imgUrl,
+                  boxFit: BoxFit.fill,
                 ),
               ),
               const SizedBox(
@@ -69,11 +71,20 @@ class HistoryViewItem extends StatelessWidget {
                       color: Colors.green,
                       ontap: isinCart
                           ? null
-                          : () {
-                              cart.addProductToCart(
-                                  productId: productModel.id,
-                                  quantity: 1,
-                                  productmodel: productModel);
+                          : () async {
+                              User? user = FirebaseAuth.instance.currentUser;
+                              if (user == null) {
+                                GlobalMethod.errorDialog(context,
+                                    subTitle: AppStrings.noUserFound);
+                                return;
+                              }
+                              // cart.addProductToCart(
+                              //     productId: productModel.id,
+                              //     quantity: 1,
+                              //     productmodel: productModel);
+                              await cart.uploadDataCartTofirebase(
+                                  quantity: '1', productid: productModel.id);
+                              await cart.fetchDatafromCart();
                             },
                       icon: isinCart ? Icons.check : CupertinoIcons.plus,
                       width: 35,
@@ -83,7 +94,7 @@ class HistoryViewItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                width: 20,
+                width: 30,
               ),
             ],
           ),

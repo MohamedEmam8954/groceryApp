@@ -1,12 +1,16 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grocery/core/utils/app_router.dart';
+import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
+import 'package:grocery/core/utils/warningdialog.dart';
 import 'package:grocery/core/widgets/bagicon.dart';
 import 'package:grocery/core/widgets/iconFav.dart';
 import 'package:grocery/features/home/data/model/product_model.dart';
-import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/app/darkThemecubit/dark_theme_cubit.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
 
 class WishlistItem extends StatelessWidget {
@@ -16,7 +20,7 @@ class WishlistItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Color color = context.read<DarkThemeCubit>().color();
+    var color = context.read<DarkThemeCubit>().currentTextColor;
     var cart = context.read<CartCubit>();
     return GestureDetector(
       onTap: () {
@@ -37,16 +41,11 @@ class WishlistItem extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Container(
-                  height: size.height * 0.3,
+                SizedBox(
+                  height: size.height * 0.15,
                   width: size.width * 0.18,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          productModel.imgUrl,
-                        ),
-                        fit: BoxFit.fill),
-                  ),
+                  child: FancyShimmerImage(
+                      imageUrl: productModel.imgUrl, boxFit: BoxFit.fill),
                 ),
                 const SizedBox(
                   width: 5,
@@ -57,12 +56,22 @@ class WishlistItem extends StatelessWidget {
                     Row(
                       children: [
                         IconBag(
-                          onBagTap: () {
-                            cart.addProductToCart(
-                              productmodel: productModel,
-                              productId: productModel.id,
-                              quantity: 1,
-                            );
+                          onBagTap: () async {
+                            User? user = FirebaseAuth.instance.currentUser;
+                            if (user == null) {
+                              GlobalMethod.errorDialog(context,
+                                  subTitle: AppStrings.noUserFound);
+                              return;
+                            }
+                            // cart.addProductToCart(
+                            //   productmodel: productModel,
+                            //   productId: productModel.id,
+                            //   quantity: 1,
+                            // );
+                            await cart.uploadDataCartTofirebase(
+                                quantity: '1', productid: productModel.id);
+
+                            await cart.fetchDatafromCart();
                           },
                           id: productModel.id,
                         ),

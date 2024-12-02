@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
+import 'package:grocery/core/utils/warningdialog.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
 import 'package:grocery/core/widgets/iconFav.dart';
 import 'package:grocery/core/widgets/product_textfield.dart';
@@ -16,12 +18,10 @@ import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/c
 class ShowProductData extends StatefulWidget {
   const ShowProductData({
     super.key,
-    required this.onFavTap,
     required this.freeDeliveryVisible,
     required this.productModel,
   });
 
-  final VoidCallback onFavTap;
   final bool freeDeliveryVisible;
   final ProductModel productModel;
 
@@ -36,8 +36,7 @@ class _ShowProductDataState extends State<ShowProductData> {
 
   @override
   void initState() {
-    log("the product model id ${widget.productModel.id}");
-    totalprice = widget.productModel.price * addProduct;
+    totalprice = double.parse(widget.productModel.price) * addProduct;
     super.initState();
   }
 
@@ -49,7 +48,7 @@ class _ShowProductDataState extends State<ShowProductData> {
 
   void updateTotalPrice() {
     setState(() {
-      totalprice = widget.productModel.price * addProduct;
+      totalprice = double.parse(widget.productModel.price) * addProduct;
     });
   }
 
@@ -93,9 +92,9 @@ class _ShowProductDataState extends State<ShowProductData> {
                     Row(
                       children: [
                         PricePerKgText(
-                          price: widget.productModel.price,
+                          price: double.parse(widget.productModel.price),
                           color: Colors.green,
-                          kg: widget.productModel.isPiece
+                          kg: widget.productModel.isPiece == 1
                               ? AppStrings.piece
                               : AppStrings.kg,
                         ),
@@ -198,13 +197,21 @@ class _ShowProductDataState extends State<ShowProductData> {
             controller: controller,
             numberOfKg: addProduct,
             price: double.parse(totalprice.toStringAsFixed(2)),
-            ontap: () {
-              log("product details ${controller.text}");
-              cart.addProductToCart(
-                productmodel: widget.productModel,
-                productId: widget.productModel.id,
-                quantity: int.parse(controller.text),
-              );
+            ontap: () async {
+              User? user = FirebaseAuth.instance.currentUser;
+              if (user == null) {
+                GlobalMethod.errorDialog(context,
+                    subTitle: AppStrings.noUserFound);
+                return;
+              }
+              // cart.addProductToCart(
+              //   productmodel: widget.productModel,
+              //   productId: widget.productModel.id,
+              //   quantity: int.parse(controller.text),
+              // );
+              await cart.uploadDataCartTofirebase(
+                  quantity: controller.text, productid: widget.productModel.id);
+              await cart.fetchDatafromCart();
             },
             productModel: widget.productModel,
           ), // Use updated total price

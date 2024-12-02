@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/features/categories/presentation/views/categoriesView.dart';
+import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/home/presentation/views/home_view.dart';
 import 'package:grocery/features/profile/presentation/views/profile_view.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
@@ -10,7 +11,8 @@ import 'package:iconly/iconly.dart';
 import 'package:badges/badges.dart' as badges;
 
 class NavgationViewBody extends StatefulWidget {
-  const NavgationViewBody({super.key});
+  const NavgationViewBody({super.key, required this.productmodel});
+  final List<ProductModel> productmodel;
 
   @override
   State<NavgationViewBody> createState() => _NavgationViewBodyState();
@@ -22,7 +24,8 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: views[index]["views"],
+      body: views[index]
+          ["views"](context, widget.productmodel), // Pass productmodel to views
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         showSelectedLabels: false,
@@ -55,10 +58,9 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
     return BottomNavigationBarItem(
       icon: BlocBuilder<CartCubit, Cartstate>(
         builder: (context, state) {
-          final cartItemCount = context.watch<CartCubit>().cartItem.length;
+          final cartItemCount = context.read<CartCubit>().cartItem.length;
           return badges.Badge(
             position: badges.BadgePosition.topEnd(top: -10, end: -12),
-            showBadge: cartItemCount > 0,
             badgeContent: FittedBox(
               child: Text(
                 cartItemCount.toString(),
@@ -74,11 +76,27 @@ class _NavgationViewBodyState extends State<NavgationViewBody> {
     );
   }
 
-  final List<Map<String, dynamic>> views = const [
-    {"views": HomeView(), "title": 'Home'},
-    {"views": CategoriesView(), "title": 'Category'},
-    {"views": Cartview(), "title": 'Cart'},
-    {"views": Profileview(), "title": 'Profile'},
+  final List<Map<String, dynamic>> views = [
+    {
+      "views": (BuildContext context, List<ProductModel> productmodel) =>
+          HomeView(productmodel: productmodel), // Pass productmodel to HomeView
+      "title": 'Home'
+    },
+    {
+      "views": (BuildContext context, List<ProductModel> productmodel) =>
+          const CategoriesView(), // No productmodel needed here
+      "title": 'Category'
+    },
+    {
+      "views": (BuildContext context, List<ProductModel> productmodel) =>
+          const Cartview(), // No productmodel needed here
+      "title": 'Cart'
+    },
+    {
+      "views": (BuildContext context, List<ProductModel> productmodel) =>
+          const Profileview(), // No productmodel needed here
+      "title": 'Profile'
+    },
   ];
 
   final List<dynamic> iconlyLight = const [

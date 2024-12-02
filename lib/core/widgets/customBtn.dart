@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 
 class CustomBtn extends StatelessWidget {
@@ -14,14 +15,15 @@ class CustomBtn extends StatelessWidget {
       this.textcolor,
       this.bordercolor,
       required this.radius,
-      this.isBorder = false});
+      this.isBorder = false,
+      this.isLoading = false});
   final VoidCallback? ontap;
   final String? title;
   final IconData? icon;
   final double? width, hight, padding;
   final Color? color, textcolor, bordercolor;
   final double radius;
-  final bool isBorder;
+  final bool isBorder, isLoading;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -37,19 +39,24 @@ class CustomBtn extends StatelessWidget {
           border:
               isBorder ? Border.all(color: textcolor ?? Colors.white) : null,
         ),
-        child: icon is IconData
-            ? Icon(
-                icon,
-                size: 22,
+        child: isLoading
+            ? const SpinKitDualRing(
                 color: Colors.white,
+                size: 20,
               )
-            : Text(
-                title!,
-                style: AppStyles.style18.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: textcolor ?? Colors.white,
-                ),
-              ),
+            : icon is IconData
+                ? Icon(
+                    icon,
+                    size: 22,
+                    color: Colors.white,
+                  )
+                : Text(
+                    title!,
+                    style: AppStyles.style18.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: textcolor ?? Colors.white,
+                    ),
+                  ),
       ),
     );
   }

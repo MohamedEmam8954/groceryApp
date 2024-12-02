@@ -1,8 +1,8 @@
-import 'dart:developer';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/core/function/navigationApp.dart';
+
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
@@ -27,6 +27,8 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
   var forthfocusNode = FocusNode();
   TextEditingController emaileditingcontroller = TextEditingController();
   TextEditingController passwordeditingcontroller = TextEditingController();
+  TextEditingController nameeditingcontroller = TextEditingController();
+  TextEditingController addresseditingcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
       child: Column(
         children: [
           CustomTextFormField(
+            controller: nameeditingcontroller,
             focusNode: fristfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.name,
@@ -68,7 +71,9 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             isauth: true,
             oncChanged: (value) {},
             validator: (value) {
-              if (value!.isEmpty || !value.contains('@')) {
+              if (value!.isEmpty ||
+                  !value.contains('@') ||
+                  !value.contains('com')) {
                 return AppStrings.enterValidEmailAddress;
               }
               return null;
@@ -107,6 +112,7 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             height: 10,
           ),
           CustomTextFormField(
+            controller: addresseditingcontroller,
             focusNode: forthfocusNode,
             textInputAction: TextInputAction.done,
             textInputType: TextInputType.streetAddress,
@@ -139,11 +145,13 @@ class _CustomSignUPAuthState extends State<CustomSignUPAuth> {
             ontap: () {
               FocusScope.of(context).unfocus();
               if (globalkey.currentState!.validate()) {
-                log(emaileditingcontroller.text);
-                log(passwordeditingcontroller.text);
                 authCubit.signUp(
-                    email: emaileditingcontroller.text.toLowerCase().trim(),
-                    password: passwordeditingcontroller.text.trim());
+                  email: emaileditingcontroller.text.toLowerCase().trim(),
+                  password: passwordeditingcontroller.text.trim(),
+                  name: nameeditingcontroller.text,
+                  address: addresseditingcontroller.text,
+                  createdas: Timestamp.now(),
+                );
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});

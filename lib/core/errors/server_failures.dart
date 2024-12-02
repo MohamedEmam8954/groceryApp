@@ -9,7 +9,7 @@ class Failures {
 class ServerFailures extends Failures {
   ServerFailures({required super.errormessage});
 
-  factory ServerFailures.fromFirebaseAuth(FirebaseAuthException error) {
+  factory ServerFailures.fromFirebaseerrors(FirebaseAuthException error) {
     switch (error.code) {
       case 'invalid-email':
         return ServerFailures(errormessage: 'The email address is not valid.');
@@ -33,6 +33,9 @@ class ServerFailures extends Failures {
       case 'network-request-failed':
         return ServerFailures(
             errormessage: 'Network error. Please check your connection.');
+      case 'invalid-credential':
+        return ServerFailures(errormessage: "Incorrect email or password.");
+
       default:
         return ServerFailures(errormessage: 'An unexpected error occurred.');
     }

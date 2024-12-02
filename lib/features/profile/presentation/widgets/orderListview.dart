@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/core/function/navigationApp.dart';
-import 'package:grocery/core/utils/app_router.dart';
+
+import 'package:grocery/features/profile/data/models/order_model.dart';
 import 'package:grocery/features/profile/presentation/widgets/yourorderitem.dart';
 
 class OrderListView extends StatelessWidget {
-  const OrderListView({super.key});
-
+  const OrderListView({super.key, required this.listOfOrders});
+  final List<OrderModel> listOfOrders;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: listOfOrders.length,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return YourOrderItem(
-          ontap: () {
-            navTo(context, AppRouter.productDetails);
-          },
+          orderModel: listOfOrders[index],
         );
       },
     );

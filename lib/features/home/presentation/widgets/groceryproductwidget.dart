@@ -1,5 +1,8 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:grocery/app/darkThemecubit/dark_theme_cubit.dart';
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
@@ -30,6 +33,7 @@ class _GroceryProductHomeState extends State<GroceryProductHome> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    Color color = context.read<DarkThemeCubit>().currentTextColor;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -49,11 +53,11 @@ class _GroceryProductHomeState extends State<GroceryProductHome> {
                 padding: const EdgeInsets.only(bottom: 20, left: 3, right: 3),
                 child: Column(
                   children: [
-                    Image.asset(
-                      widget.productModel.imgUrl,
-                      fit: BoxFit.fill,
-                      width: size.width * 0.22,
+                    FancyShimmerImage(
+                      boxFit: BoxFit.fill,
+                      width: size.width * 0.2,
                       height: size.width * 0.25,
+                      imageUrl: widget.productModel.imgUrl,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -62,12 +66,15 @@ class _GroceryProductHomeState extends State<GroceryProductHome> {
                         children: [
                           Flexible(
                             flex: 3,
-                            child: Text(
-                              widget.productModel.title,
-                              style: AppStyles.style22
-                                  .copyWith(fontWeight: FontWeight.bold),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
+                            child: Padding(
+                              padding: const EdgeInsets.all(3),
+                              child: Text(
+                                widget.productModel.title,
+                                style: AppStyles.style22
+                                    .copyWith(fontWeight: FontWeight.bold),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ),
                           Flexible(
@@ -82,7 +89,7 @@ class _GroceryProductHomeState extends State<GroceryProductHome> {
                       height: 5,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -90,20 +97,20 @@ class _GroceryProductHomeState extends State<GroceryProductHome> {
                             child: PriceWidget(
                                 onsale: widget.productModel.isOnsale,
                                 onsaleprice: widget.productModel.salePrice,
-                                price: widget.productModel.price,
+                                price: double.parse(widget.productModel.price),
                                 textPrice: controller.text),
                           ),
                           Row(
                             children: [
                               Text(
-                                widget.productModel.isPiece
+                                widget.productModel.isPiece == 1
                                     ? AppStrings.piece
                                     : " ${AppStrings.kg}",
-                                style: AppStyles.style17
+                                style: AppStyles.style15
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
-                                width: 30,
+                                width: 22,
                                 child: ProductTextField(
                                   controller: controller,
                                   onchanged: (value) {
@@ -128,6 +135,7 @@ class _GroceryProductHomeState extends State<GroceryProductHome> {
             ),
           ),
           IncartBtn(
+            textColor: color,
             productModel: widget.productModel,
             controller: controller,
             color: Theme.of(context).focusColor,

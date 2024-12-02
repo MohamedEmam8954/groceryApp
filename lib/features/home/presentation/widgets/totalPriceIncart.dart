@@ -45,11 +45,12 @@ class TotalPriceInCart extends StatelessWidget {
                     ),
                     PricePerKgText(
                       price: price,
-                      kg: "$numberOfKg ${productModel.isPiece ? AppStrings.piece : AppStrings.kg}",
+                      kg: "$numberOfKg ${productModel.isPiece == 1 ? AppStrings.piece : AppStrings.kg}",
                     ),
                   ],
                 ),
                 IncartBtn(
+                  textColor: Colors.white,
                   productModel: productModel,
                   controller: controller,
                   color: Colors.green,

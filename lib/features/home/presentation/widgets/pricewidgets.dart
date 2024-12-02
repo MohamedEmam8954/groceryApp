@@ -9,13 +9,13 @@ class PriceWidget extends StatelessWidget {
       required this.price,
       required this.textPrice});
   final bool onsale;
-  final double onsaleprice;
+  final num onsaleprice;
   final double price;
   final String textPrice;
 
   @override
   Widget build(BuildContext context) {
-    double userprice = onsale ? onsaleprice : price;
+    num userprice = onsale ? onsaleprice : price;
     return FittedBox(
       child: Row(
         children: [

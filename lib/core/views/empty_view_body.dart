@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grocery/core/function/navigationApp.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grocery/constant/constant.dart';
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/utils/app_styles.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
-import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/app/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/features/home/presentation/manager/allProductdetailscubit/allproduct_details_model.dart';
 
 class EmptyView extends StatelessWidget {
   const EmptyView(
@@ -19,7 +21,12 @@ class EmptyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var gettheme = context.read<DarkThemeCubit>().getTheme();
+    var gettheme = context
+        .read<DarkThemeCubit>()
+        .myCacheHelper
+        .getData(key: AppConstant.themeStatus);
+    var productcubit = context.read<AllProductDetailsCubit>();
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -71,7 +78,8 @@ class EmptyView extends StatelessWidget {
                     isBorder: true,
                     radius: 10,
                     ontap: () {
-                      navTo(context, AppRouter.browseAllProduct);
+                      GoRouter.of(context).push(AppRouter.browseAllProduct,
+                          extra: productcubit.productModel);
                     },
                     title: btnTitle,
                     color: Theme.of(context).colorScheme.secondary,

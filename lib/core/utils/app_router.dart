@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grocery/features/auth/presentation/views/forgetPasswordview.dart';
+import 'package:grocery/core/utils/dependency_injection.dart';
+import 'package:grocery/features/auth/presentation/views/forget_password_view.dart';
 import 'package:grocery/features/auth/presentation/views/loginview.dart';
 import 'package:grocery/features/auth/presentation/views/signupview.dart';
 import 'package:grocery/features/categories/data/model/categoryViewItemmodel.dart';
@@ -9,12 +12,14 @@ import 'package:grocery/features/home/presentation/views/browse_all_product.dart
 import 'package:grocery/features/home/presentation/views/navgation_view.dart';
 import 'package:grocery/features/home/presentation/views/onsale_view.dart';
 import 'package:grocery/features/home/presentation/views/productdetailsview.dart';
+import 'package:grocery/features/profile/data/repo/orderRepo/order_repo_imp.dart';
+import 'package:grocery/features/profile/presentation/manager/cubit/orderCubit/order_cubit.dart';
 import 'package:grocery/features/profile/presentation/views/history_view.dart';
 import 'package:grocery/features/profile/presentation/views/orderview.dart';
 import 'package:grocery/features/profile/presentation/views/wishlistview.dart';
 
-class AppRouter {
-  static String loginView = "/";
+abstract class AppRouter {
+  static String loginView = "/login";
   static String onsaleView = "/OnSale";
   static String navigation = "/navigation";
   static String browseAllProduct = "/browseallproduct";
@@ -27,6 +32,10 @@ class AppRouter {
   static String allProductcategories = "/allProductcategories";
 
   static GoRouter goRoute = GoRouter(
+    initialLocation: (FirebaseAuth.instance.currentUser != null &&
+            FirebaseAuth.instance.currentUser!.emailVerified)
+        ? AppRouter.navigation
+        : AppRouter.loginView,
     routes: [
       GoRoute(
         path: loginView,
@@ -34,9 +43,7 @@ class AppRouter {
       ),
       GoRoute(
         path: onsaleView,
-        builder: (context, state) => const OnSaleView(
-          isSale: false,
-        ),
+        builder: (context, state) => const OnSaleView(),
       ),
       GoRoute(
         path: navigation,
@@ -44,7 +51,9 @@ class AppRouter {
       ),
       GoRoute(
         path: browseAllProduct,
-        builder: (context, state) => const BrowseAllProductView(),
+        builder: (context, state) => BrowseAllProductView(
+          productModel: state.extra as List<ProductModel>,
+        ),
       ),
       GoRoute(
         path: productDetails,
@@ -58,7 +67,10 @@ class AppRouter {
       ),
       GoRoute(
         path: orderView,
-        builder: (context, state) => const OrderView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => OrderCubit(getIt.get<OrderRepoImp>()),
+          child: const OrderView(),
+        ),
       ),
       GoRoute(
         path: historyView,

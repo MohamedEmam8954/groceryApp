@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/constant/constant.dart';
-import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/app/darkThemecubit/dark_theme_cubit.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
@@ -55,7 +55,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       onEditingComplete: oneditingcomplete,
       style: TextStyle(color: isauth ? Colors.white : null, fontSize: 16),
-      maxLines: 1,
+      maxLines: maxlines,
       decoration: InputDecoration(
         border: underlineInputBorder(),
         enabledBorder: underlineInputBorder(),

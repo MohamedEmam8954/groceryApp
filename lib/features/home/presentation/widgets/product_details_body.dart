@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:grocery/core/widgets/backwidget.dart';
 import 'package:grocery/features/home/data/model/product_model.dart';
@@ -17,15 +18,15 @@ class ProductDetailsBody extends StatelessWidget {
         ),
         Flexible(
           flex: 2,
-          child: Image.asset(
-            productModel.imgUrl,
-            fit: BoxFit.fill,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FancyShimmerImage(
+              boxFit: BoxFit.fill,
+              imageUrl: productModel.imgUrl,
+            ),
           ),
         ),
-        ShowProductData(
-            productModel: productModel,
-            onFavTap: () {},
-            freeDeliveryVisible: true),
+        ShowProductData(productModel: productModel, freeDeliveryVisible: true),
       ],
     );
   }

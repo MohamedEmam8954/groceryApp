@@ -10,9 +10,14 @@ import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/c
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cartcubitstate.dart';
 import 'package:grocery/features/shopping/presentation/widgets/cartViewBody.dart';
 
-class Cartview extends StatelessWidget {
+class Cartview extends StatefulWidget {
   const Cartview({super.key});
 
+  @override
+  State<Cartview> createState() => _CartviewState();
+}
+
+class _CartviewState extends State<Cartview> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, Cartstate>(
@@ -38,15 +43,13 @@ class Cartview extends StatelessWidget {
                 title: AppStrings.emptyCart,
                 subTitle: AppStrings.areYouSure,
                 onTapOK: () {
-                  cartCubit.deleteAllCartItem();
+                  cartCubit.deleteAllCartItems();
                   popAppRouter(context);
                 },
               );
             },
           ),
-          body: CartViewBody(
-            cartList: cartList,
-          ),
+          body: CartViewBody(cartList: cartList),
         );
       },
     );

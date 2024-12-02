@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery/app/groceryapp.dart';
 import 'package:grocery/core/function/navigationApp.dart';
 import 'package:grocery/core/utils/app_router.dart';
 import 'package:grocery/core/utils/app_strings.dart';
 import 'package:grocery/core/widgets/customBtn.dart';
 import 'package:grocery/core/widgets/customtextformfield.dart';
+import 'package:grocery/features/auth/presentation/manager/cubit/auth_cubit_cubit.dart';
 import 'package:grocery/features/auth/presentation/widgets/forgetPasswordbtn.dart';
 
 class CustomLoginAuth extends StatefulWidget {
@@ -19,14 +22,18 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
   bool isvisable = false;
   var fristfocusNode = FocusNode();
   var secondfocusNode = FocusNode();
+  TextEditingController emailEditingController = TextEditingController();
+  TextEditingController passwordEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var authCubit = context.read<AuthCubit>();
     return Form(
       key: globalkey,
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
           CustomTextFormField(
+            controller: emailEditingController,
             focusNode: fristfocusNode,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
@@ -47,6 +54,7 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
             height: 20,
           ),
           CustomTextFormField(
+            controller: passwordEditingController,
             focusNode: secondfocusNode,
             textInputAction: TextInputAction.done,
             textInputType: TextInputType.visiblePassword,
@@ -56,7 +64,7 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
             isauth: true,
             oncChanged: (value) {},
             validator: (value) {
-              if (value!.isEmpty || value.length < 7) {
+              if (value!.isEmpty) {
                 return AppStrings.enterValidPassword;
               }
               return null;
@@ -86,6 +94,9 @@ class _CustomLoginAuthState extends State<CustomLoginAuth> {
             ontap: () {
               FocusScope.of(context).unfocus();
               if (globalkey.currentState!.validate()) {
+                authCubit.signIn(
+                    email: emailEditingController.text.toLowerCase().trim(),
+                    password: passwordEditingController.text);
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});

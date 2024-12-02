@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:grocery/features/profile/presentation/widgets/account_Setting.dart';
+import 'package:grocery/features/profile/presentation/widgets/account_setting.dart';
 import 'package:grocery/features/profile/presentation/widgets/customUserInfo.dart';
 
 class ProfileViewBody extends StatelessWidget {

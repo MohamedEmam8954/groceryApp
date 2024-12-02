@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/constant/app_Theme.dart';
-import 'package:grocery/constant/constant.dart';
 import 'package:grocery/core/cache/my_cache_helper.dart';
-import 'package:grocery/core/utils/dependencyInjection.dart';
+import 'package:grocery/core/utils/dependency_injection.dart';
 import 'package:grocery/core/utils/app_router.dart';
+import 'package:grocery/app/darkThemecubit/dark_theme_cubit.dart';
 import 'package:grocery/features/home/presentation/manager/allProductdetailscubit/allproduct_details_model.dart';
-import 'package:grocery/features/home/presentation/manager/darkThemecubit/dark_theme_cubit.dart';
+import 'package:grocery/features/home/repo/home_repo_imp.dart';
+import 'package:grocery/features/profile/data/repo/wishListRepo/wishlist_repo_imp.dart';
 import 'package:grocery/features/profile/presentation/manager/cubit/viewedProductcubit/viewed_product_cubit.dart';
 import 'package:grocery/features/profile/presentation/manager/cubit/wishlistcubit/wish_list_cubit.dart';
+import 'package:grocery/features/shopping/data/repo/cart_repo_imp.dart';
 import 'package:grocery/features/shopping/presentation/manager/cubit/cartcubit/cart_cubit.dart';
 
 class GroceryApp extends StatefulWidget {
@@ -32,25 +34,23 @@ class _GroceryAppState extends State<GroceryApp> {
           create: (context) => DarkThemeCubit(getIt.get<MyCacheHelper>()),
         ),
         BlocProvider(
-          create: (context) => CartCubit(),
-        ),
+            create: (context) => CartCubit(
+                homeRepo: getIt.get<HomeRepoImp>(),
+                cartRepo: getIt.get<CartRepoImp>())),
         BlocProvider(
-          create: (context) => AllProductDetailsCubit(),
-        ),
-        BlocProvider(
-          create: (context) => WishListCubit(),
+          create: (context) => WishListCubit(getIt.get<WishlistRepoImp>()),
         ),
         BlocProvider(
           create: (context) => ViewedProductCubit(),
         ),
+        BlocProvider(
+            create: (context) =>
+                AllProductDetailsCubit(getIt.get<HomeRepoImp>()))
       ],
       child: BlocBuilder<DarkThemeCubit, DarkThemeState>(
         builder: (context, state) {
-          final themeState = BlocProvider.of<DarkThemeCubit>(context);
           return MaterialApp.router(
-            theme: AppTheme.themeData(
-                themeState.myCacheHelper.getData(key: AppConstant.themeStatus),
-                context),
+            theme: AppTheme.themeData(state.isDark, context),
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.goRoute,
           );

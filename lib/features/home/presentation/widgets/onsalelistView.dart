@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery/features/home/data/model/product_model.dart';
 import 'package:grocery/features/home/presentation/manager/allProductdetailscubit/allproduct_details_model.dart';
 import 'package:grocery/features/home/presentation/widgets/onsalewidget.dart';
+import 'package:redacted/redacted.dart';
 
 class OnsaleListView extends StatelessWidget {
-  const OnsaleListView({super.key});
-
+  const OnsaleListView({super.key, required this.productModel});
+  final List<ProductModel> productModel;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -23,7 +24,7 @@ class OnsaleListView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: OnSaleWidget(
               productModel: productOnSale[index],
-            ),
+            ).redacted(context: context, redact: false),
           );
         },
       ),
